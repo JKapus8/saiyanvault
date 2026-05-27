@@ -204,7 +204,13 @@ tr:hover td{background:rgba(255,255,255,0.02);}
   .breakdown-row{grid-template-columns:1fr;}
   .total-amount{font-size:42px;}
   .form-grid{grid-template-columns:1fr;}
-  header{flex-direction:column;align-items:flex-start;}
+  header{flex-wrap:wrap;padding:0.6rem 0;gap:4px;}
+  .logo{flex:1 1 auto;min-width:0;}
+  nav{flex:0 0 auto;}
+  #curr-wrap{flex:0 0 auto;}
+  header>button[title="Download with saved data"]{flex:0 0 auto;}
+  .mobile-right{display:flex;flex-direction:column;align-items:flex-end;gap:3px;flex:0 0 auto;}
+  nav .nav-btn{padding:5px 8px;font-size:11px;}
   .collection-grid{grid-template-columns:repeat(2,1fr);gap:8px;}
   .card-top{padding:10px 10px 8px;}
   .card-name{font-size:11px;}
@@ -237,7 +243,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
       <button class="nav-btn nav-btn-collection active" onclick="showPage('collection',this)"><span>Collection</span></button>
       <button class="nav-btn nav-btn-portfolio" onclick="showPage('portfolio',this)"><span>Portfolio Value</span></button>
     </nav>
-    <div id="curr-wrap" style="position:relative;flex-shrink:0;">
+      <div id="curr-wrap" style="position:relative;flex-shrink:0;">
       <button id="curr-btn" onclick="var m=document.getElementById('curr-menu');m.style.display=m.style.display==='block'?'none':'block'" style="display:flex;align-items:center;gap:4px;font-size:11px;font-weight:600;padding:5px 9px;border-radius:var(--radius-sm);border:0.5px solid var(--border2);background:var(--bg2);color:var(--text);cursor:pointer;font-family:var(--font-body);white-space:nowrap;line-height:1;">
         <span id="curr-flag" style="font-size:13px;line-height:1;"><img src="https://flagcdn.com/16x12/ca.png" width="16" height="12" style="vertical-align:middle;border-radius:2px;"></span><span id="curr-lbl" style="font-size:11px;margin-left:2px;">CAD</span><i class="ti ti-chevron-down" style="font-size:9px;opacity:0.5;margin-left:2px;"></i>
       </button>
@@ -8002,6 +8008,20 @@ function exportHTML(){
 
 render();
 renderPortfolio();
+
+// Mobile header grouping
+(function(){
+  if(window.innerWidth > 640) return;
+  var saveBtn = document.querySelector('button[title="Download with saved data"]');
+  var currWrap = document.getElementById('curr-wrap');
+  if(saveBtn && currWrap){
+    var mRight = document.createElement('div');
+    mRight.className = 'mobile-right';
+    saveBtn.parentNode.insertBefore(mRight, currWrap);
+    mRight.appendChild(saveBtn);
+    mRight.appendChild(currWrap);
+  }
+})();
 
 function pickCurr(code,flag,rate){
   _currRate=rate; _currCode=code; _currDec=(code==='JPY'?0:2);
