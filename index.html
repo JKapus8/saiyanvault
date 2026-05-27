@@ -41,8 +41,11 @@ nav{display:flex;gap:4px;background:var(--bg3);padding:4px;border-radius:var(--r
 @keyframes fadeIn{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
 .summary-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:1.5rem;}
 .stat-card{background:var(--bg2);border:0.5px solid var(--border);border-radius:var(--radius-sm);padding:14px 16px;}
-.stat-label{font-size:15px;color:var(--text);text-transform:uppercase;letter-spacing:1px;margin-bottom:5px;font-weight:600;}
+.stat-label{font-size:15px;color:var(--text);text-transform:uppercase;letter-spacing:0px;margin-bottom:5px;font-weight:600;}
 .stat-val{font-family:var(--font-display);font-size:34px;font-weight:800;letter-spacing:-1.5px;}
+.stat-val-count{font-family:var(--font-display);font-size:32px;font-weight:800;letter-spacing:-1px;}
+.stat-card-flat{padding:5px 16px;}
+.stat-card-flat .stat-label{margin-bottom:1px;}
 .stat-currency{font-size:0.585em;opacity:0.5;vertical-align:baseline;margin-left:2px;letter-spacing:-0.5px;font-weight:400;}
 .stat-val.orange{color:var(--db);}
 .stat-val.blue{color:var(--pk);}
@@ -198,7 +201,11 @@ tr:hover td{background:rgba(255,255,255,0.02);}
   .bought-row{padding:6px 10px;}
   .logo-text h1{font-size:22px;}
   nav .nav-btn{padding:6px 12px;font-size:12px;}
-  .stat-val{font-size:26px;}
+  .stat-val{font-size:22px;letter-spacing:-1.5px;}
+  .stat-val-count{font-size:24px;letter-spacing:-1px;}
+  .stat-currency{font-size:0.52em;margin-left:1px;}
+  .stat-card{padding:10px 12px;}
+  .stat-card-flat{padding:4px 12px;}
   .toolbar{gap:5px;}
   .filter-chip{font-size:11px;padding:5px 10px;}
 }
@@ -260,10 +267,10 @@ tr:hover td{background:rgba(255,255,255,0.02);}
   <div class="page active" id="page-collection">
     </div>
 
-    <div class="summary-strip" style="grid-template-columns:repeat(3,1fr);">
-      <div class="stat-card"><div class="stat-label">Total Items</div><div class="stat-val" id="s-total">61</div></div>
-      <div class="stat-card"><div class="stat-label">Dragon Ball</div><div class="stat-val orange" id="s-db">53</div></div>
-      <div class="stat-card"><div class="stat-label">Pokémon</div><div class="stat-val blue" id="s-pk">8</div></div>
+    <div class="summary-strip summary-strip-top" style="grid-template-columns:repeat(3,1fr);">
+      <div class="stat-card stat-card-flat"><div class="stat-label">Total Items</div><div class="stat-val stat-val-count" id="s-total">61</div></div>
+      <div class="stat-card stat-card-flat"><div class="stat-label">Dragon Ball</div><div class="stat-val stat-val-count orange" id="s-db">53</div></div>
+      <div class="stat-card stat-card-flat"><div class="stat-label">Pokémon</div><div class="stat-val stat-val-count blue" id="s-pk">8</div></div>
     </div>
     <div class="summary-strip" style="grid-template-columns:repeat(2,1fr);margin-top:-6px;">
       <div class="stat-card"><div class="stat-label">Total Spent (CAD)</div><div class="stat-val" style="color:var(--yellow)" id="s-spent">$9,260.00<span class="stat-currency"> CAD</span></div></div>
