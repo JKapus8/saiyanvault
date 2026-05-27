@@ -57,20 +57,44 @@ nav{display:flex;gap:4px;background:var(--bg3);padding:4px;border-radius:var(--r
 @keyframes fadeIn{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
 .summary-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:6px;margin-bottom:1rem;}
 .stat-card{background:var(--bg2);border:0.5px solid var(--border);border-radius:var(--radius-sm);padding:8px 14px;}
-.stat-label{font-size:15px;color:var(--text);text-transform:uppercase;letter-spacing:-0.3px;margin-bottom:0px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.stat-val{font-family:var(--font-display);font-size:34px;font-weight:800;letter-spacing:-1.5px;}
-.stat-currency{font-size:0.585em;opacity:0.5;vertical-align:baseline;margin-left:2px;letter-spacing:-0.5px;font-weight:400;}
-.stat-val.orange{color:var(--db);}
-.stat-val-count.orange{color:var(--db);}
-.stat-val-count.blue{color:var(--pk);}
-.stat-val.blue{color:var(--pk);}
-.stat-val.green{color:var(--green);}
+
+/* Banner shine - left to right sweep on all banner text */
+@keyframes bannerShine{0%{background-position:150% center}100%{background-position:-50% center}}
+.stat-label{font-size:15px;text-transform:uppercase;letter-spacing:-0.3px;margin-bottom:0px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  background:linear-gradient(90deg,var(--text) 0%,var(--text) 30%,#fff 50%,var(--text) 70%,var(--text) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% auto;animation:bannerShine 4s ease-in-out infinite;}
+.stat-val{font-family:var(--font-display);font-size:34px;font-weight:800;letter-spacing:-1.5px;transition:opacity 0.3s;background:linear-gradient(90deg,#888 0%,var(--text) 30%,#fff 50%,var(--text) 70%,#888 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% auto;animation:bannerShine 4s ease-in-out infinite;}
+.stat-currency{font-size:0.585em;vertical-align:baseline;margin-left:2px;letter-spacing:-0.5px;font-weight:400;}
+.stat-val.orange{background:linear-gradient(90deg,#c2410c 0%,var(--db) 30%,#fb923c 50%,var(--db) 70%,#c2410c 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% auto;animation:bannerShine 4s ease-in-out infinite;}
+.stat-val-count.orange{background:linear-gradient(90deg,#c2410c 0%,var(--db) 30%,#fb923c 50%,var(--db) 70%,#c2410c 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% auto;animation:bannerShine 4s ease-in-out infinite;}
+.stat-val-count.blue{background:linear-gradient(90deg,#1d4ed8 0%,var(--pk) 30%,#93c5fd 50%,var(--pk) 70%,#1d4ed8 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% auto;animation:bannerShine 4s ease-in-out infinite;}
+.stat-val.blue{background:linear-gradient(90deg,#1d4ed8 0%,var(--pk) 30%,#93c5fd 50%,var(--pk) 70%,#1d4ed8 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% auto;animation:bannerShine 4s ease-in-out infinite;}
+.stat-val.yellow{background:linear-gradient(90deg,#b45309 0%,var(--yellow) 30%,#fde68a 50%,var(--yellow) 70%,#b45309 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% auto;animation:bannerShine 4s ease-in-out infinite;}
+.stat-val.green{background:linear-gradient(90deg,#047857 0%,var(--green) 30%,#6ee7b7 50%,var(--green) 70%,#047857 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% auto;animation:bannerShine 4s ease-in-out infinite;}
 .toolbar{display:flex;align-items:center;gap:8px;margin-bottom:1.2rem;flex-wrap:wrap;}
-.filter-chip{font-size:12px;font-weight:500;padding:6px 14px;border-radius:999px;border:0.5px solid var(--border);background:transparent;color:var(--text2);cursor:pointer;transition:all 0.15s;white-space:nowrap;}
-.filter-chip:hover{color:var(--text);border-color:var(--border2);}
+.filter-chip{font-size:12px;font-weight:500;padding:6px 14px;border-radius:999px;border:0.5px solid var(--border);background:transparent;cursor:pointer;transition:all 0.15s;white-space:nowrap;}
+.filter-chip:hover{border-color:var(--border2);}
 .filter-chip.active{background:var(--text);color:var(--bg);border-color:var(--text);}
-.filter-chip.f-db.active{background:var(--db);color:#fff;border-color:var(--db);}
-.filter-chip.f-pk.active{background:var(--pk);color:#fff;border-color:var(--pk);}
+
+/* All chips shine in their color when inactive */
+.filter-chip:not(.active){background:linear-gradient(90deg,var(--text3) 0%,var(--text2) 30%,var(--text) 50%,var(--text2) 70%,var(--text3) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% auto;animation:goldShine 4s linear infinite;}
+
+/* DB chip - orange shimmer */
+.filter-chip.f-db:not(.active){background:linear-gradient(90deg,#b45309 0%,#d97706 25%,#f97316 45%,#fb923c 50%,#f97316 55%,#d97706 75%,#b45309 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% auto;animation:goldShine 4s linear infinite;}
+
+/* PK chip - blue shimmer */
+.filter-chip.f-pk:not(.active){background:linear-gradient(90deg,#1d4ed8 0%,#2563eb 25%,#3b82f6 45%,#60a5fa 50%,#3b82f6 55%,#2563eb 75%,#1d4ed8 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% auto;animation:goldShine 4s linear infinite;}
+
+/* Figures chip - gold/yellow shimmer matching Collection button */
+.filter-chip.f-all:not(.active){background:linear-gradient(90deg,#6b4a10 0%,#b8822a 25%,#e8c46a 45%,#e8a020 50%,#e8c46a 55%,#b8822a 75%,#6b4a10 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% auto;animation:goldShine 4s linear infinite;}
+.filter-chip.f-all.active{background:#c98a1a;-webkit-text-fill-color:#fff;color:#fff;border-color:#c98a1a;text-shadow:0 0 2px rgba(0,0,0,0.5),0 1px 2px rgba(0,0,0,0.4);}
+/* Active states keep solid color */
+.filter-chip.f-db.active{background:var(--db);-webkit-text-fill-color:#fff;color:#fff;border-color:var(--db);}
+.filter-chip.f-pk.active{background:var(--pk);-webkit-text-fill-color:#fff;color:#fff;border-color:var(--pk);}
+
+.filter-chip.active{position:relative;overflow:hidden;}
+.filter-chip.active::after{content:'';position:absolute;top:-50%;left:-100%;width:55%;height:200%;background:linear-gradient(105deg,transparent 0%,rgba(255,255,255,0.08) 30%,rgba(255,255,255,0.28) 50%,rgba(255,255,255,0.08) 70%,transparent 100%);transform:rotate(20deg);animation:chipShine 4s ease-in-out infinite;}
+@keyframes chipShine{0%{left:-100%;}55%{left:160%;}55.1%,100%{left:-100%;}}
 .spacer{flex:1;}
 .add-btn{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:500;padding:8px 16px;border-radius:var(--radius-sm);border:0.5px solid var(--border2);background:var(--bg3);color:var(--text);cursor:pointer;transition:all 0.15s;white-space:nowrap;}
 .add-btn:hover{background:var(--bg4);}
@@ -107,7 +131,13 @@ nav{display:flex;gap:4px;background:var(--bg3);padding:4px;border-radius:var(--r
 .search-btn{background:transparent;border:none;color:var(--text3);cursor:pointer;padding:6px 8px;border-radius:var(--radius-sm);transition:color 0.15s;font-size:16px;display:flex;align-items:center;}
 .search-btn:hover{color:var(--text);}
 .search-btn.active{color:var(--pk);}
-.search-wrap{display:none;width:100%;margin-top:8px;}
+.search-wrap{display:none;flex:1;min-width:120px;}
+.pagination{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:1rem;margin-bottom:1rem;flex-wrap:wrap;}
+#pagination-top{margin-top:0.4rem;margin-bottom:0.4rem;}
+.page-btn{font-size:12px;font-weight:500;padding:5px 12px;border-radius:var(--radius-sm);border:0.5px solid var(--border);background:var(--bg2);color:var(--text2);cursor:pointer;transition:all 0.15s;font-family:var(--font-body);}
+.page-btn:hover{border-color:var(--border2);color:var(--text);}
+.page-btn.active{background:var(--text);color:var(--bg);border-color:var(--text);}
+.page-info{font-size:12px;color:var(--text3);padding:0 6px;}
 .search-wrap.open{display:flex;gap:6px;}
 .search-input{flex:1;background:var(--bg3);border:0.5px solid var(--border2);border-radius:var(--radius-sm);padding:7px 12px;font-size:13px;color:var(--text);font-family:var(--font-body);outline:none;}
 .search-input:focus{border-color:var(--pk);}
@@ -120,7 +150,11 @@ nav{display:flex;gap:4px;background:var(--bg3);padding:4px;border-radius:var(--r
 .edit-price-btn:hover{color:var(--pk);}
 .card-footer{padding:10px 16px 14px;display:flex;align-items:center;justify-content:space-between;gap:8px;}
 .best-label{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:2px;}
-.best-price{font-family:var(--font-display);font-size:26px;color:var(--text);line-height:1;}
+.best-price{font-family:var(--font-display);font-size:26px;color:var(--text);line-height:1;letter-spacing:-2px;transition:opacity 0.3s;}
+.market-price:not(.empty){background-size:200% auto;animation:priceShimmer 4s linear infinite;}
+.market-price.green:not(.empty){background:linear-gradient(90deg,#047857 0%,#059669 15%,#10b981 30%,#34d399 43%,#6ee7b7 50%,#34d399 57%,#10b981 70%,#059669 85%,#047857 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% auto;animation:priceShimmer 3s linear infinite;}
+.market-price.underwater{background:linear-gradient(90deg,#dc2626 0%,#ef4444 15%,#f87171 30%,#fca5a5 43%,#fecaca 50%,#fca5a5 57%,#f87171 70%,#ef4444 85%,#dc2626 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% auto;animation:priceShimmer 3s linear infinite;}
+@keyframes priceShimmer{0%{background-position:200% center}100%{background-position:0% center}}
 .best-source{font-size:10px;color:var(--text3);margin-top:2px;}
 .del-btn{font-size:11px;padding:4px 10px;border-radius:6px;border:0.5px solid transparent;background:transparent;color:var(--text3);cursor:pointer;transition:all 0.15s;}
 .del-btn:hover{background:rgba(239,68,68,0.1);color:var(--red);}
@@ -183,6 +217,8 @@ tr:hover td{background:rgba(255,255,255,0.02);}
 .btn-add:hover{opacity:0.88;}
 /* CAROUSEL */
 .carousel-wrap{position:relative;padding:0 14px 14px;}
+.card-shine{position:absolute;top:0;left:-150%;width:90%;height:100%;background:linear-gradient(105deg,transparent 0%,transparent 22%,rgba(255,255,255,0.03) 36%,rgba(255,255,255,0.22) 50%,rgba(255,255,255,0.03) 64%,transparent 78%,transparent 100%);pointer-events:none;animation:cardShine 6s ease-in-out infinite;}
+@keyframes cardShine{0%{left:-150%;}60%{left:170%;}60.1%,100%{left:-150%;}}
 .carousel-img{width:100%;max-height:200px;object-fit:contain;border-radius:8px;border:0.5px solid var(--border);background:var(--bg3);cursor:pointer;transition:opacity 0.2s;display:block;}
 .carousel-img:hover{opacity:0.92;}
 .carousel-placeholder{width:100%;height:120px;border-radius:8px;border:0.5px dashed var(--border);background:var(--bg3);display:flex;align-items:center;justify-content:center;color:var(--text3);font-size:12px;gap:6px;}
@@ -192,7 +228,8 @@ tr:hover td{background:rgba(255,255,255,0.02);}
 .carousel-arrow.prev{left:20px;}
 .carousel-arrow.next{right:20px;}
 /* CARD IMAGE */
-.card-img-wrap{padding:0 14px 14px;display:flex;justify-content:center;}
+
+
 .card-img{width:100%;max-height:200px;object-fit:contain;border-radius:8px;border:0.5px solid var(--border);background:var(--bg3);cursor:pointer;transition:transform 0.2s;}
 .card-img:hover{transform:scale(1.02);}
 .card-img-placeholder{width:100%;height:120px;border-radius:8px;border:0.5px dashed var(--border);background:var(--bg3);display:flex;align-items:center;justify-content:center;color:var(--text3);font-size:12px;gap:6px;}
@@ -280,7 +317,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
   <!-- PORTFOLIO TOP BANNER - shows under header only on portfolio tab -->
   <div id="port-top-banner" style="display:none;background:var(--bg2);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.2rem 1.5rem;margin-bottom:1.5rem;">
     <div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px;">Total Collection Value</div>
-    <div style="font-family:var(--font-display);font-size:48px;color:var(--text);line-height:1;" id="banner-total">$46,400.00<span class="stat-currency"> CAD</span></div>
+    <div style="font-family:var(--font-display);font-size:48px;color:var(--text);line-height:1;" id="banner-total">$*******</div>
     <div style="display:flex;align-items:center;gap:6px;margin-top:8px;">
       <div style="width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;"></div>
       <span style="font-size:12px;color:var(--text3);" id="banner-updated">Last updated: 7:15:24 AM</span>
@@ -288,22 +325,22 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px;">
       <div style="background:var(--bg3);border-radius:var(--radius-sm);padding:10px 12px;">
         <div style="font-size:10px;color:var(--text3);display:flex;align-items:center;gap:5px;margin-bottom:4px;"><div style="width:6px;height:6px;border-radius:50%;background:var(--db);"></div>Dragon Ball</div>
-        <div style="font-family:var(--font-display);font-size:22px;color:var(--db);" id="banner-db">$27,750.00<span class="stat-currency"> CAD</span></div>
+        <div style="font-family:var(--font-display);font-size:22px;color:var(--db);" id="banner-db">$*******</div>
         <div style="font-size:11px;color:var(--text3);" id="banner-db-ct">53 item(s)</div>
       </div>
       <div style="background:var(--bg3);border-radius:var(--radius-sm);padding:10px 12px;">
         <div style="font-size:10px;color:var(--text3);display:flex;align-items:center;gap:5px;margin-bottom:4px;"><div style="width:6px;height:6px;border-radius:50%;background:var(--pk);"></div>Pokémon</div>
-        <div style="font-family:var(--font-display);font-size:22px;color:var(--pk);" id="banner-pk">$18,650.00<span class="stat-currency"> CAD</span></div>
+        <div style="font-family:var(--font-display);font-size:22px;color:var(--pk);" id="banner-pk">$*******</div>
         <div style="font-size:11px;color:var(--text3);" id="banner-pk-ct">8 item(s)</div>
       </div>
       <div style="background:var(--bg3);border-radius:var(--radius-sm);padding:10px 12px;">
         <div style="font-size:10px;color:var(--text3);display:flex;align-items:center;gap:5px;margin-bottom:4px;"><div style="width:6px;height:6px;border-radius:50%;background:var(--yellow);"></div>Total Spent</div>
-        <div style="font-family:var(--font-display);font-size:22px;color:var(--yellow);" id="banner-spent">$9,260.00<span class="stat-currency"> CAD</span></div>
-        <div style="font-size:11px;color:var(--text3);" id="banner-profit-lbl">▲ Up $37,140.00<span class="stat-currency"> CAD</span></div>
+        <div style="font-family:var(--font-display);font-size:22px;color:var(--yellow);" id="banner-spent">$*******</div>
+        <div style="font-size:11px;color:var(--text3);" id="banner-profit-lbl">▲ Up $37,140.00 <span style="font-size:0.585em;letter-spacing:-0.5px;font-weight:400;vertical-align:baseline;margin-left:1px;">CAD</span></div>
       </div>
       <div style="background:var(--bg3);border-radius:var(--radius-sm);padding:10px 12px;">
         <div style="font-size:10px;color:var(--text3);display:flex;align-items:center;gap:5px;margin-bottom:4px;"><div style="width:6px;height:6px;border-radius:50%;background:var(--green);"></div>Profit / Loss</div>
-        <div style="font-family: var(--font-display); font-size: 22px; color: var(--green);" id="banner-pl">$37,140.00<span class="stat-currency"> CAD</span></div>
+        <div style="font-family: var(--font-display); font-size: 22px; color: var(--green);" id="banner-pl">$*******</div>
         <div style="font-size:11px;color:var(--text3);">vs. what you paid</div>
       </div>
     </div>
@@ -314,23 +351,40 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     </div>
 
     <div class="summary-strip summary-strip-top" style="grid-template-columns:repeat(3,1fr);">
-      <div class="stat-card stat-card-flat"><div class="stat-label">Total Items</div><div class="stat-val stat-val-count" id="s-total">61</div></div>
-      <div class="stat-card stat-card-flat"><div class="stat-label">Dragon Ball</div><div class="stat-val stat-val-count orange" id="s-db">53</div></div>
-      <div class="stat-card stat-card-flat"><div class="stat-label">Pokémon</div><div class="stat-val stat-val-count blue" id="s-pk">8</div></div>
+      <div class="stat-card stat-card-flat"><div class="stat-label" style="color:var(--text);">Total Items</div><div class="stat-val stat-val-count" id="s-total">***</div></div>
+      <div class="stat-card stat-card-flat"><div class="stat-label" style="color:var(--db);">Dragon Ball</div><div class="stat-val stat-val-count orange" id="s-db">***</div></div>
+      <div class="stat-card stat-card-flat"><div class="stat-label" style="color:var(--pk);">Pokémon</div><div class="stat-val stat-val-count blue" id="s-pk">***</div></div>
     </div>
     <div class="summary-strip" style="grid-template-columns:repeat(2,1fr);margin-top:-6px;">
-      <div class="stat-card"><div class="stat-label">Total Spent</div><div class="stat-val" style="color:var(--yellow)" id="s-spent">$9,260.00<span class="stat-currency"> CAD</span></div></div>
-      <div class="stat-card"><div class="stat-label">Collection Value</div><div class="stat-val green" id="s-val">$46,400.00<span class="stat-currency"> CAD</span></div></div>
+      <div class="stat-card"><div class="stat-label">Total Spent</div><div class="stat-val yellow" id="s-spent">$9,260.00 <span style="font-size:0.585em;letter-spacing:-0.5px;font-weight:400;vertical-align:baseline;margin-left:1px;">CAD</span></div></div>
+      <div class="stat-card"><div class="stat-label">Collection Value</div><div class="stat-val green" id="s-val">$******</div></div>
     </div>
 
     <div class="toolbar">
-      <button class="filter-chip active" onclick="setFilter('all',this);showBriefcaseTabs(false)">All</button>
+      <button class="filter-chip f-all active" onclick="setFilter('all',this);showBriefcaseTabs(false)">All</button>
       <button class="filter-chip f-db" onclick="setFilter('db',this);showBriefcaseTabs(false)">Dragon Ball</button>
       <button class="filter-chip f-pk" onclick="setFilter('pk',this);showBriefcaseTabs(false)">Pokémon</button>
       <button class="filter-chip" onclick="setFilter('figure',this);showBriefcaseTabs(false)">Figures</button>
       <button class="filter-chip" id="cards-chip" onclick="setFilter('card',this);resetBriefcase()">Cards</button>
       <button class="search-btn" id="search-toggle-btn" onclick="toggleSearch()" title="Search items"><i class="ti ti-search"></i></button>
+      <div id="search-pill" style="display:none;">
+        <span style="display:inline-flex;align-items:center;gap:5px;background:var(--pk);color:#fff;font-size:11px;font-weight:600;padding:4px 10px;border-radius:999px;">
+          <i class="ti ti-search" style="font-size:10px;"></i>
+          <span id="search-pill-text"></span>
+          <button onclick="clearSearch()" style="background:none;border:none;color:#fff;cursor:pointer;padding:0;font-size:13px;line-height:1;opacity:0.8;">×</button>
+        </span>
+      </div>
+      <div class="search-wrap" id="search-wrap" style="flex:1;min-width:0;">
+        <input class="search-input" id="search-input" type="text" placeholder="Search items..." oninput="onSearch()" onkeydown="if(event.key==='Enter'){commitSearch();}" autocomplete="off" style="width:100%;"/>
+        <button class="search-clear" onclick="clearSearch()" title="Clear"><i class="ti ti-x"></i></button>
+      </div>
       <div class="spacer"></div>
+      <select class="filter-chip" id="show-select" onchange="setPageSize(parseInt(this.value))" style="padding:6px 12px;cursor:pointer;">
+        <option value="22">Show: 22</option>
+        <option value="44">Show: 44</option>
+        <option value="80">Show: 80</option>
+        <option value="99999">Show: All</option>
+      </select>
       <select class="filter-chip" id="sort-select" onchange="setSort(this.value)" style="padding:6px 12px;cursor:pointer;">
         <option value="default">Sort: Default</option>
         <option value="price-desc">💰 Most Expensive</option>
@@ -340,11 +394,6 @@ tr:hover td{background:rgba(255,255,255,0.02);}
       <button class="add-btn" onclick="openModal()"><i class="ti ti-plus"></i> Add Item</button>
     </div>
 
-    <!-- SEARCH BAR -->
-    <div class="search-wrap" id="search-wrap">
-      <input class="search-input" id="search-input" type="text" placeholder="Search items..." oninput="onSearch()" onblur="setTimeout(clearSearch,150)" autocomplete="off"/>
-      <button class="search-clear" onclick="clearSearch()" title="Clear"><i class="ti ti-x"></i></button>
-    </div>
 
     <!-- BRIEFCASE SUB-TABS -->
     <div id="briefcase-tabs" style="display:none;margin-bottom:1rem;">
@@ -353,6 +402,8 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <button id="bf-btn-2" class="nav-btn" onclick="setBriefcase(2)" style="font-size:12px;padding:6px 16px;">💼 Briefcase #2</button>
       </div>
     </div>
+
+    <div class="pagination" id="pagination-top"></div>
 
     <div class="collection-grid" id="collection-grid"><div class="item-card" id="card-1">
     <div class="card-top">
@@ -371,7 +422,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-1-eBay">CA$6,000.00</span>
+        <span class="market-price " id="mp-1-eBay">$<span style="letter-spacing:-1px">6,000.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-1-eBay" value="6000" oninput="savePrice(1,'eBay',this.value)" onblur="hideInput('1','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-1-eBay" onclick="toggleInput('1','eBay')">
           <i class="ti ti-pencil"></i>
@@ -448,7 +499,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-1">CA$6,000.00</div>
+        <div class="best-price" id="bp-1">$<span style="letter-spacing:-1px">6,000.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-1">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(1)"><i class="ti ti-trash"></i> Remove</button>
@@ -476,7 +527,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-23-eBay">CA$6,000.00</span>
+        <span class="market-price " id="mp-23-eBay">$<span style="letter-spacing:-1px">6,000.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-23-eBay" value="6000" oninput="savePrice(23,'eBay',this.value)" onblur="hideInput('23','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-23-eBay" onclick="toggleInput('23','eBay')">
           <i class="ti ti-pencil"></i>
@@ -553,7 +604,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-23">CA$6,000.00</div>
+        <div class="best-price" id="bp-23">$<span style="letter-spacing:-1px">6,000.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-23">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(23)"><i class="ti ti-trash"></i> Remove</button>
@@ -581,7 +632,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-22-eBay">CA$3,000.00</span>
+        <span class="market-price " id="mp-22-eBay">$<span style="letter-spacing:-1px">3,000.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-22-eBay" value="3000" oninput="savePrice(22,'eBay',this.value)" onblur="hideInput('22','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-22-eBay" onclick="toggleInput('22','eBay')">
           <i class="ti ti-pencil"></i>
@@ -658,7 +709,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-22">CA$3,000.00</div>
+        <div class="best-price" id="bp-22">$<span style="letter-spacing:-1px">3,000.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-22">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(22)"><i class="ti ti-trash"></i> Remove</button>
@@ -686,7 +737,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-2-eBay">CA$1,000.00</span>
+        <span class="market-price " id="mp-2-eBay">$<span style="letter-spacing:-1px">1,000.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-2-eBay" value="1000" oninput="savePrice(2,'eBay',this.value)" onblur="hideInput('2','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-2-eBay" onclick="toggleInput('2','eBay')">
           <i class="ti ti-pencil"></i>
@@ -763,7 +814,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-2">CA$1,000.00</div>
+        <div class="best-price" id="bp-2">$<span style="letter-spacing:-1px">1,000.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-2">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(2)"><i class="ti ti-trash"></i> Remove</button>
@@ -791,7 +842,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-24-eBay">CA$1,000.00</span>
+        <span class="market-price " id="mp-24-eBay">$<span style="letter-spacing:-1px">1,000.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-24-eBay" value="1000" oninput="savePrice(24,'eBay',this.value)" onblur="hideInput('24','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-24-eBay" onclick="toggleInput('24','eBay')">
           <i class="ti ti-pencil"></i>
@@ -868,7 +919,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-24">CA$1,000.00</div>
+        <div class="best-price" id="bp-24">$<span style="letter-spacing:-1px">1,000.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-24">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(24)"><i class="ti ti-trash"></i> Remove</button>
@@ -896,7 +947,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-25-eBay">CA$500.00</span>
+        <span class="market-price " id="mp-25-eBay">$<span style="letter-spacing:-1px">500.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-25-eBay" value="500" oninput="savePrice(25,'eBay',this.value)" onblur="hideInput('25','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-25-eBay" onclick="toggleInput('25','eBay')">
           <i class="ti ti-pencil"></i>
@@ -973,7 +1024,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-25">CA$500.00</div>
+        <div class="best-price" id="bp-25">$<span style="letter-spacing:-1px">500.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-25">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(25)"><i class="ti ti-trash"></i> Remove</button>
@@ -1001,7 +1052,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-3-eBay">CA$1,500.00</span>
+        <span class="market-price " id="mp-3-eBay">$<span style="letter-spacing:-1px">1,500.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-3-eBay" value="1500" oninput="savePrice(3,'eBay',this.value)" onblur="hideInput('3','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-3-eBay" onclick="toggleInput('3','eBay')">
           <i class="ti ti-pencil"></i>
@@ -1078,7 +1129,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-3">CA$1,500.00</div>
+        <div class="best-price" id="bp-3">$<span style="letter-spacing:-1px">1,500.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-3">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(3)"><i class="ti ti-trash"></i> Remove</button>
@@ -1106,7 +1157,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-4-eBay">CA$500.00</span>
+        <span class="market-price " id="mp-4-eBay">$<span style="letter-spacing:-1px">500.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-4-eBay" value="500" oninput="savePrice(4,'eBay',this.value)" onblur="hideInput('4','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-4-eBay" onclick="toggleInput('4','eBay')">
           <i class="ti ti-pencil"></i>
@@ -1183,7 +1234,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-4">CA$500.00</div>
+        <div class="best-price" id="bp-4">$<span style="letter-spacing:-1px">500.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-4">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(4)"><i class="ti ti-trash"></i> Remove</button>
@@ -1211,7 +1262,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-5-eBay">CA$2,000.00</span>
+        <span class="market-price " id="mp-5-eBay">$<span style="letter-spacing:-1px">2,000.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-5-eBay" value="2000" oninput="savePrice(5,'eBay',this.value)" onblur="hideInput('5','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-5-eBay" onclick="toggleInput('5','eBay')">
           <i class="ti ti-pencil"></i>
@@ -1288,7 +1339,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-5">CA$2,000.00</div>
+        <div class="best-price" id="bp-5">$<span style="letter-spacing:-1px">2,000.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-5">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(5)"><i class="ti ti-trash"></i> Remove</button>
@@ -1316,7 +1367,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-6-eBay">CA$2,000.00</span>
+        <span class="market-price " id="mp-6-eBay">$<span style="letter-spacing:-1px">2,000.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-6-eBay" value="2000" oninput="savePrice(6,'eBay',this.value)" onblur="hideInput('6','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-6-eBay" onclick="toggleInput('6','eBay')">
           <i class="ti ti-pencil"></i>
@@ -1393,7 +1444,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-6">CA$2,000.00</div>
+        <div class="best-price" id="bp-6">$<span style="letter-spacing:-1px">2,000.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-6">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(6)"><i class="ti ti-trash"></i> Remove</button>
@@ -1421,7 +1472,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-7-eBay">CA$500.00</span>
+        <span class="market-price " id="mp-7-eBay">$<span style="letter-spacing:-1px">500.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-7-eBay" value="500" oninput="savePrice(7,'eBay',this.value)" onblur="hideInput('7','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-7-eBay" onclick="toggleInput('7','eBay')">
           <i class="ti ti-pencil"></i>
@@ -1498,7 +1549,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-7">CA$500.00</div>
+        <div class="best-price" id="bp-7">$<span style="letter-spacing:-1px">500.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-7">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(7)"><i class="ti ti-trash"></i> Remove</button>
@@ -1526,7 +1577,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-8-eBay">CA$1,000.00</span>
+        <span class="market-price " id="mp-8-eBay">$<span style="letter-spacing:-1px">1,000.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-8-eBay" value="1000" oninput="savePrice(8,'eBay',this.value)" onblur="hideInput('8','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-8-eBay" onclick="toggleInput('8','eBay')">
           <i class="ti ti-pencil"></i>
@@ -1603,7 +1654,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-8">CA$1,000.00</div>
+        <div class="best-price" id="bp-8">$<span style="letter-spacing:-1px">1,000.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-8">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(8)"><i class="ti ti-trash"></i> Remove</button>
@@ -1653,7 +1704,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>Mercari Japan ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-9-Mercari_Japan">CA$5,000.00</span>
+        <span class="market-price " id="mp-9-Mercari_Japan">$<span style="letter-spacing:-1px">5,000.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-9-Mercari_Japan" value="5000" oninput="savePrice(9,'Mercari Japan',this.value)" onblur="hideInput('9','Mercari_Japan')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-9-Mercari_Japan" onclick="toggleInput('9','Mercari_Japan')">
           <i class="ti ti-pencil"></i>
@@ -1708,7 +1759,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-9">CA$5,000.00</div>
+        <div class="best-price" id="bp-9">$<span style="letter-spacing:-1px">5,000.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-9">Mercari Japan</div>
       </div>
       <button class="del-btn" onclick="deleteItem(9)"><i class="ti ti-trash"></i> Remove</button>
@@ -1736,7 +1787,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-10-eBay">CA$800.00</span>
+        <span class="market-price " id="mp-10-eBay">$<span style="letter-spacing:-1px">800.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-10-eBay" value="800" oninput="savePrice(10,'eBay',this.value)" onblur="hideInput('10','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-10-eBay" onclick="toggleInput('10','eBay')">
           <i class="ti ti-pencil"></i>
@@ -1813,7 +1864,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-10">CA$800.00</div>
+        <div class="best-price" id="bp-10">$<span style="letter-spacing:-1px">800.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-10">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(10)"><i class="ti ti-trash"></i> Remove</button>
@@ -1841,7 +1892,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-11-eBay">CA$700.00</span>
+        <span class="market-price " id="mp-11-eBay">$<span style="letter-spacing:-1px">700.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-11-eBay" value="700" oninput="savePrice(11,'eBay',this.value)" onblur="hideInput('11','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-11-eBay" onclick="toggleInput('11','eBay')">
           <i class="ti ti-pencil"></i>
@@ -1918,7 +1969,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-11">CA$700.00</div>
+        <div class="best-price" id="bp-11">$<span style="letter-spacing:-1px">700.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-11">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(11)"><i class="ti ti-trash"></i> Remove</button>
@@ -1946,7 +1997,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-12-eBay">CA$1,000.00</span>
+        <span class="market-price " id="mp-12-eBay">$<span style="letter-spacing:-1px">1,000.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-12-eBay" value="1000" oninput="savePrice(12,'eBay',this.value)" onblur="hideInput('12','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-12-eBay" onclick="toggleInput('12','eBay')">
           <i class="ti ti-pencil"></i>
@@ -2023,7 +2074,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-12">CA$1,000.00</div>
+        <div class="best-price" id="bp-12">$<span style="letter-spacing:-1px">1,000.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-12">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(12)"><i class="ti ti-trash"></i> Remove</button>
@@ -2051,7 +2102,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-13-eBay">CA$600.00</span>
+        <span class="market-price " id="mp-13-eBay">$<span style="letter-spacing:-1px">600.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-13-eBay" value="600" oninput="savePrice(13,'eBay',this.value)" onblur="hideInput('13','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-13-eBay" onclick="toggleInput('13','eBay')">
           <i class="ti ti-pencil"></i>
@@ -2128,7 +2179,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-13">CA$600.00</div>
+        <div class="best-price" id="bp-13">$<span style="letter-spacing:-1px">600.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-13">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(13)"><i class="ti ti-trash"></i> Remove</button>
@@ -2156,7 +2207,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-14-eBay">CA$600.00</span>
+        <span class="market-price " id="mp-14-eBay">$<span style="letter-spacing:-1px">600.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-14-eBay" value="600" oninput="savePrice(14,'eBay',this.value)" onblur="hideInput('14','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-14-eBay" onclick="toggleInput('14','eBay')">
           <i class="ti ti-pencil"></i>
@@ -2233,7 +2284,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-14">CA$600.00</div>
+        <div class="best-price" id="bp-14">$<span style="letter-spacing:-1px">600.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-14">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(14)"><i class="ti ti-trash"></i> Remove</button>
@@ -2261,7 +2312,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-15-eBay">CA$500.00</span>
+        <span class="market-price " id="mp-15-eBay">$<span style="letter-spacing:-1px">500.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-15-eBay" value="500" oninput="savePrice(15,'eBay',this.value)" onblur="hideInput('15','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-15-eBay" onclick="toggleInput('15','eBay')">
           <i class="ti ti-pencil"></i>
@@ -2338,7 +2389,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-15">CA$500.00</div>
+        <div class="best-price" id="bp-15">$<span style="letter-spacing:-1px">500.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-15">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(15)"><i class="ti ti-trash"></i> Remove</button>
@@ -2366,7 +2417,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-16-eBay">CA$500.00</span>
+        <span class="market-price " id="mp-16-eBay">$<span style="letter-spacing:-1px">500.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-16-eBay" value="500" oninput="savePrice(16,'eBay',this.value)" onblur="hideInput('16','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-16-eBay" onclick="toggleInput('16','eBay')">
           <i class="ti ti-pencil"></i>
@@ -2443,7 +2494,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-16">CA$500.00</div>
+        <div class="best-price" id="bp-16">$<span style="letter-spacing:-1px">500.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-16">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(16)"><i class="ti ti-trash"></i> Remove</button>
@@ -2471,7 +2522,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-17-eBay">CA$400.00</span>
+        <span class="market-price " id="mp-17-eBay">$<span style="letter-spacing:-1px">400.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-17-eBay" value="400" oninput="savePrice(17,'eBay',this.value)" onblur="hideInput('17','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-17-eBay" onclick="toggleInput('17','eBay')">
           <i class="ti ti-pencil"></i>
@@ -2548,7 +2599,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-17">CA$400.00</div>
+        <div class="best-price" id="bp-17">$<span style="letter-spacing:-1px">400.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-17">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(17)"><i class="ti ti-trash"></i> Remove</button>
@@ -2576,7 +2627,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-18-eBay">CA$400.00</span>
+        <span class="market-price " id="mp-18-eBay">$<span style="letter-spacing:-1px">400.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-18-eBay" value="400" oninput="savePrice(18,'eBay',this.value)" onblur="hideInput('18','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-18-eBay" onclick="toggleInput('18','eBay')">
           <i class="ti ti-pencil"></i>
@@ -2653,7 +2704,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-18">CA$400.00</div>
+        <div class="best-price" id="bp-18">$<span style="letter-spacing:-1px">400.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-18">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(18)"><i class="ti ti-trash"></i> Remove</button>
@@ -2681,7 +2732,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-19-eBay">CA$600.00</span>
+        <span class="market-price " id="mp-19-eBay">$<span style="letter-spacing:-1px">600.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-19-eBay" value="600" oninput="savePrice(19,'eBay',this.value)" onblur="hideInput('19','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-19-eBay" onclick="toggleInput('19','eBay')">
           <i class="ti ti-pencil"></i>
@@ -2758,7 +2809,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-19">CA$600.00</div>
+        <div class="best-price" id="bp-19">$<span style="letter-spacing:-1px">600.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-19">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(19)"><i class="ti ti-trash"></i> Remove</button>
@@ -2786,7 +2837,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-20-eBay">CA$400.00</span>
+        <span class="market-price " id="mp-20-eBay">$<span style="letter-spacing:-1px">400.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-20-eBay" value="400" oninput="savePrice(20,'eBay',this.value)" onblur="hideInput('20','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-20-eBay" onclick="toggleInput('20','eBay')">
           <i class="ti ti-pencil"></i>
@@ -2863,7 +2914,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-20">CA$400.00</div>
+        <div class="best-price" id="bp-20">$<span style="letter-spacing:-1px">400.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-20">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(20)"><i class="ti ti-trash"></i> Remove</button>
@@ -2891,7 +2942,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-21-eBay">CA$300.00</span>
+        <span class="market-price " id="mp-21-eBay">$<span style="letter-spacing:-1px">300.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-21-eBay" value="300" oninput="savePrice(21,'eBay',this.value)" onblur="hideInput('21','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-21-eBay" onclick="toggleInput('21','eBay')">
           <i class="ti ti-pencil"></i>
@@ -2968,7 +3019,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-21">CA$300.00</div>
+        <div class="best-price" id="bp-21">$<span style="letter-spacing:-1px">300.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-21">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(21)"><i class="ti ti-trash"></i> Remove</button>
@@ -2996,7 +3047,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-60-eBay">CA$500.00</span>
+        <span class="market-price " id="mp-60-eBay">$<span style="letter-spacing:-1px">500.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-60-eBay" value="500" oninput="savePrice(60,'eBay',this.value)" onblur="hideInput('60','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-60-eBay" onclick="toggleInput('60','eBay')">
           <i class="ti ti-pencil"></i>
@@ -3073,7 +3124,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-60">CA$500.00</div>
+        <div class="best-price" id="bp-60">$<span style="letter-spacing:-1px">500.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-60">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(60)"><i class="ti ti-trash"></i> Remove</button>
@@ -3101,7 +3152,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-61-eBay">CA$500.00</span>
+        <span class="market-price " id="mp-61-eBay">$<span style="letter-spacing:-1px">500.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-61-eBay" value="500" oninput="savePrice(61,'eBay',this.value)" onblur="hideInput('61','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-61-eBay" onclick="toggleInput('61','eBay')">
           <i class="ti ti-pencil"></i>
@@ -3178,7 +3229,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-61">CA$500.00</div>
+        <div class="best-price" id="bp-61">$<span style="letter-spacing:-1px">500.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-61">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(61)"><i class="ti ti-trash"></i> Remove</button>
@@ -3206,7 +3257,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-26-eBay">CA$600.00</span>
+        <span class="market-price " id="mp-26-eBay">$<span style="letter-spacing:-1px">600.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-26-eBay" value="600" oninput="savePrice(26,'eBay',this.value)" onblur="hideInput('26','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-26-eBay" onclick="toggleInput('26','eBay')">
           <i class="ti ti-pencil"></i>
@@ -3283,7 +3334,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-26">CA$600.00</div>
+        <div class="best-price" id="bp-26">$<span style="letter-spacing:-1px">600.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-26">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(26)"><i class="ti ti-trash"></i> Remove</button>
@@ -3311,7 +3362,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-27-eBay">CA$300.00</span>
+        <span class="market-price " id="mp-27-eBay">$<span style="letter-spacing:-1px">300.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-27-eBay" value="300" oninput="savePrice(27,'eBay',this.value)" onblur="hideInput('27','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-27-eBay" onclick="toggleInput('27','eBay')">
           <i class="ti ti-pencil"></i>
@@ -3388,7 +3439,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-27">CA$300.00</div>
+        <div class="best-price" id="bp-27">$<span style="letter-spacing:-1px">300.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-27">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(27)"><i class="ti ti-trash"></i> Remove</button>
@@ -3416,7 +3467,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-28-eBay">CA$200.00</span>
+        <span class="market-price " id="mp-28-eBay">$<span style="letter-spacing:-1px">200.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-28-eBay" value="200" oninput="savePrice(28,'eBay',this.value)" onblur="hideInput('28','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-28-eBay" onclick="toggleInput('28','eBay')">
           <i class="ti ti-pencil"></i>
@@ -3493,7 +3544,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-28">CA$200.00</div>
+        <div class="best-price" id="bp-28">$<span style="letter-spacing:-1px">200.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-28">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(28)"><i class="ti ti-trash"></i> Remove</button>
@@ -3521,7 +3572,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-29-eBay">CA$250.00</span>
+        <span class="market-price " id="mp-29-eBay">$<span style="letter-spacing:-1px">250.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-29-eBay" value="250" oninput="savePrice(29,'eBay',this.value)" onblur="hideInput('29','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-29-eBay" onclick="toggleInput('29','eBay')">
           <i class="ti ti-pencil"></i>
@@ -3598,7 +3649,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-29">CA$250.00</div>
+        <div class="best-price" id="bp-29">$<span style="letter-spacing:-1px">250.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-29">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(29)"><i class="ti ti-trash"></i> Remove</button>
@@ -3626,7 +3677,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-30-eBay">CA$200.00</span>
+        <span class="market-price " id="mp-30-eBay">$<span style="letter-spacing:-1px">200.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-30-eBay" value="200" oninput="savePrice(30,'eBay',this.value)" onblur="hideInput('30','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-30-eBay" onclick="toggleInput('30','eBay')">
           <i class="ti ti-pencil"></i>
@@ -3703,7 +3754,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-30">CA$200.00</div>
+        <div class="best-price" id="bp-30">$<span style="letter-spacing:-1px">200.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-30">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(30)"><i class="ti ti-trash"></i> Remove</button>
@@ -3731,7 +3782,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-31-eBay">CA$200.00</span>
+        <span class="market-price " id="mp-31-eBay">$<span style="letter-spacing:-1px">200.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-31-eBay" value="200" oninput="savePrice(31,'eBay',this.value)" onblur="hideInput('31','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-31-eBay" onclick="toggleInput('31','eBay')">
           <i class="ti ti-pencil"></i>
@@ -3808,7 +3859,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-31">CA$200.00</div>
+        <div class="best-price" id="bp-31">$<span style="letter-spacing:-1px">200.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-31">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(31)"><i class="ti ti-trash"></i> Remove</button>
@@ -3836,7 +3887,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-32-eBay">CA$550.00</span>
+        <span class="market-price " id="mp-32-eBay">$<span style="letter-spacing:-1px">550.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-32-eBay" value="550" oninput="savePrice(32,'eBay',this.value)" onblur="hideInput('32','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-32-eBay" onclick="toggleInput('32','eBay')">
           <i class="ti ti-pencil"></i>
@@ -3913,7 +3964,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-32">CA$550.00</div>
+        <div class="best-price" id="bp-32">$<span style="letter-spacing:-1px">550.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-32">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(32)"><i class="ti ti-trash"></i> Remove</button>
@@ -3941,7 +3992,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-33-eBay">CA$300.00</span>
+        <span class="market-price " id="mp-33-eBay">$<span style="letter-spacing:-1px">300.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-33-eBay" value="300" oninput="savePrice(33,'eBay',this.value)" onblur="hideInput('33','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-33-eBay" onclick="toggleInput('33','eBay')">
           <i class="ti ti-pencil"></i>
@@ -4018,7 +4069,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-33">CA$300.00</div>
+        <div class="best-price" id="bp-33">$<span style="letter-spacing:-1px">300.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-33">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(33)"><i class="ti ti-trash"></i> Remove</button>
@@ -4046,7 +4097,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-34-eBay">CA$1,000.00</span>
+        <span class="market-price " id="mp-34-eBay">$<span style="letter-spacing:-1px">1,000.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-34-eBay" value="1000" oninput="savePrice(34,'eBay',this.value)" onblur="hideInput('34','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-34-eBay" onclick="toggleInput('34','eBay')">
           <i class="ti ti-pencil"></i>
@@ -4123,7 +4174,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-34">CA$1,000.00</div>
+        <div class="best-price" id="bp-34">$<span style="letter-spacing:-1px">1,000.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-34">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(34)"><i class="ti ti-trash"></i> Remove</button>
@@ -4151,7 +4202,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-35-eBay">CA$250.00</span>
+        <span class="market-price " id="mp-35-eBay">$<span style="letter-spacing:-1px">250.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-35-eBay" value="250" oninput="savePrice(35,'eBay',this.value)" onblur="hideInput('35','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-35-eBay" onclick="toggleInput('35','eBay')">
           <i class="ti ti-pencil"></i>
@@ -4228,7 +4279,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-35">CA$250.00</div>
+        <div class="best-price" id="bp-35">$<span style="letter-spacing:-1px">250.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-35">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(35)"><i class="ti ti-trash"></i> Remove</button>
@@ -4256,7 +4307,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-36-eBay">CA$150.00</span>
+        <span class="market-price " id="mp-36-eBay">$<span style="letter-spacing:-1px">150.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-36-eBay" value="150" oninput="savePrice(36,'eBay',this.value)" onblur="hideInput('36','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-36-eBay" onclick="toggleInput('36','eBay')">
           <i class="ti ti-pencil"></i>
@@ -4333,7 +4384,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-36">CA$150.00</div>
+        <div class="best-price" id="bp-36">$<span style="letter-spacing:-1px">150.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-36">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(36)"><i class="ti ti-trash"></i> Remove</button>
@@ -4361,7 +4412,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-37-eBay">CA$350.00</span>
+        <span class="market-price " id="mp-37-eBay">$<span style="letter-spacing:-1px">350.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-37-eBay" value="350" oninput="savePrice(37,'eBay',this.value)" onblur="hideInput('37','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-37-eBay" onclick="toggleInput('37','eBay')">
           <i class="ti ti-pencil"></i>
@@ -4438,7 +4489,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-37">CA$350.00</div>
+        <div class="best-price" id="bp-37">$<span style="letter-spacing:-1px">350.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-37">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(37)"><i class="ti ti-trash"></i> Remove</button>
@@ -4466,7 +4517,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-38-eBay">CA$250.00</span>
+        <span class="market-price " id="mp-38-eBay">$<span style="letter-spacing:-1px">250.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-38-eBay" value="250" oninput="savePrice(38,'eBay',this.value)" onblur="hideInput('38','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-38-eBay" onclick="toggleInput('38','eBay')">
           <i class="ti ti-pencil"></i>
@@ -4543,7 +4594,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-38">CA$250.00</div>
+        <div class="best-price" id="bp-38">$<span style="letter-spacing:-1px">250.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-38">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(38)"><i class="ti ti-trash"></i> Remove</button>
@@ -4571,7 +4622,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-39-eBay">CA$250.00</span>
+        <span class="market-price " id="mp-39-eBay">$<span style="letter-spacing:-1px">250.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-39-eBay" value="250" oninput="savePrice(39,'eBay',this.value)" onblur="hideInput('39','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-39-eBay" onclick="toggleInput('39','eBay')">
           <i class="ti ti-pencil"></i>
@@ -4648,7 +4699,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-39">CA$250.00</div>
+        <div class="best-price" id="bp-39">$<span style="letter-spacing:-1px">250.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-39">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(39)"><i class="ti ti-trash"></i> Remove</button>
@@ -4676,7 +4727,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-40-eBay">CA$150.00</span>
+        <span class="market-price " id="mp-40-eBay">$<span style="letter-spacing:-1px">150.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-40-eBay" value="150" oninput="savePrice(40,'eBay',this.value)" onblur="hideInput('40','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-40-eBay" onclick="toggleInput('40','eBay')">
           <i class="ti ti-pencil"></i>
@@ -4753,7 +4804,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-40">CA$150.00</div>
+        <div class="best-price" id="bp-40">$<span style="letter-spacing:-1px">150.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-40">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(40)"><i class="ti ti-trash"></i> Remove</button>
@@ -4781,7 +4832,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-41-eBay">CA$400.00</span>
+        <span class="market-price " id="mp-41-eBay">$<span style="letter-spacing:-1px">400.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-41-eBay" value="400" oninput="savePrice(41,'eBay',this.value)" onblur="hideInput('41','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-41-eBay" onclick="toggleInput('41','eBay')">
           <i class="ti ti-pencil"></i>
@@ -4858,7 +4909,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-41">CA$400.00</div>
+        <div class="best-price" id="bp-41">$<span style="letter-spacing:-1px">400.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-41">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(41)"><i class="ti ti-trash"></i> Remove</button>
@@ -4886,7 +4937,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-42-eBay">CA$200.00</span>
+        <span class="market-price " id="mp-42-eBay">$<span style="letter-spacing:-1px">200.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-42-eBay" value="200" oninput="savePrice(42,'eBay',this.value)" onblur="hideInput('42','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-42-eBay" onclick="toggleInput('42','eBay')">
           <i class="ti ti-pencil"></i>
@@ -4963,7 +5014,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-42">CA$200.00</div>
+        <div class="best-price" id="bp-42">$<span style="letter-spacing:-1px">200.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-42">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(42)"><i class="ti ti-trash"></i> Remove</button>
@@ -4991,7 +5042,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-43-eBay">CA$200.00</span>
+        <span class="market-price " id="mp-43-eBay">$<span style="letter-spacing:-1px">200.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-43-eBay" value="200" oninput="savePrice(43,'eBay',this.value)" onblur="hideInput('43','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-43-eBay" onclick="toggleInput('43','eBay')">
           <i class="ti ti-pencil"></i>
@@ -5068,7 +5119,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-43">CA$200.00</div>
+        <div class="best-price" id="bp-43">$<span style="letter-spacing:-1px">200.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-43">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(43)"><i class="ti ti-trash"></i> Remove</button>
@@ -5096,7 +5147,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-44-eBay">CA$150.00</span>
+        <span class="market-price " id="mp-44-eBay">$<span style="letter-spacing:-1px">150.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-44-eBay" value="150" oninput="savePrice(44,'eBay',this.value)" onblur="hideInput('44','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-44-eBay" onclick="toggleInput('44','eBay')">
           <i class="ti ti-pencil"></i>
@@ -5173,7 +5224,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-44">CA$150.00</div>
+        <div class="best-price" id="bp-44">$<span style="letter-spacing:-1px">150.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-44">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(44)"><i class="ti ti-trash"></i> Remove</button>
@@ -5201,7 +5252,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-45-eBay">CA$100.00</span>
+        <span class="market-price " id="mp-45-eBay">$<span style="letter-spacing:-1px">100.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-45-eBay" value="100" oninput="savePrice(45,'eBay',this.value)" onblur="hideInput('45','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-45-eBay" onclick="toggleInput('45','eBay')">
           <i class="ti ti-pencil"></i>
@@ -5278,7 +5329,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-45">CA$100.00</div>
+        <div class="best-price" id="bp-45">$<span style="letter-spacing:-1px">100.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-45">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(45)"><i class="ti ti-trash"></i> Remove</button>
@@ -5306,7 +5357,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-46-eBay">CA$150.00</span>
+        <span class="market-price " id="mp-46-eBay">$<span style="letter-spacing:-1px">150.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-46-eBay" value="150" oninput="savePrice(46,'eBay',this.value)" onblur="hideInput('46','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-46-eBay" onclick="toggleInput('46','eBay')">
           <i class="ti ti-pencil"></i>
@@ -5383,7 +5434,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-46">CA$150.00</div>
+        <div class="best-price" id="bp-46">$<span style="letter-spacing:-1px">150.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-46">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(46)"><i class="ti ti-trash"></i> Remove</button>
@@ -5411,7 +5462,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-47-eBay">CA$150.00</span>
+        <span class="market-price " id="mp-47-eBay">$<span style="letter-spacing:-1px">150.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-47-eBay" value="150" oninput="savePrice(47,'eBay',this.value)" onblur="hideInput('47','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-47-eBay" onclick="toggleInput('47','eBay')">
           <i class="ti ti-pencil"></i>
@@ -5488,7 +5539,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-47">CA$150.00</div>
+        <div class="best-price" id="bp-47">$<span style="letter-spacing:-1px">150.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-47">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(47)"><i class="ti ti-trash"></i> Remove</button>
@@ -5516,7 +5567,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-48-eBay">CA$100.00</span>
+        <span class="market-price " id="mp-48-eBay">$<span style="letter-spacing:-1px">100.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-48-eBay" value="100" oninput="savePrice(48,'eBay',this.value)" onblur="hideInput('48','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-48-eBay" onclick="toggleInput('48','eBay')">
           <i class="ti ti-pencil"></i>
@@ -5593,7 +5644,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-48">CA$100.00</div>
+        <div class="best-price" id="bp-48">$<span style="letter-spacing:-1px">100.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-48">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(48)"><i class="ti ti-trash"></i> Remove</button>
@@ -5621,7 +5672,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-49-eBay">CA$200.00</span>
+        <span class="market-price " id="mp-49-eBay">$<span style="letter-spacing:-1px">200.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-49-eBay" value="200" oninput="savePrice(49,'eBay',this.value)" onblur="hideInput('49','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-49-eBay" onclick="toggleInput('49','eBay')">
           <i class="ti ti-pencil"></i>
@@ -5698,7 +5749,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-49">CA$200.00</div>
+        <div class="best-price" id="bp-49">$<span style="letter-spacing:-1px">200.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-49">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(49)"><i class="ti ti-trash"></i> Remove</button>
@@ -5726,7 +5777,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-50-eBay">CA$200.00</span>
+        <span class="market-price " id="mp-50-eBay">$<span style="letter-spacing:-1px">200.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-50-eBay" value="200" oninput="savePrice(50,'eBay',this.value)" onblur="hideInput('50','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-50-eBay" onclick="toggleInput('50','eBay')">
           <i class="ti ti-pencil"></i>
@@ -5803,7 +5854,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-50">CA$200.00</div>
+        <div class="best-price" id="bp-50">$<span style="letter-spacing:-1px">200.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-50">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(50)"><i class="ti ti-trash"></i> Remove</button>
@@ -5831,7 +5882,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-51-eBay">CA$100.00</span>
+        <span class="market-price " id="mp-51-eBay">$<span style="letter-spacing:-1px">100.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-51-eBay" value="100" oninput="savePrice(51,'eBay',this.value)" onblur="hideInput('51','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-51-eBay" onclick="toggleInput('51','eBay')">
           <i class="ti ti-pencil"></i>
@@ -5908,7 +5959,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-51">CA$100.00</div>
+        <div class="best-price" id="bp-51">$<span style="letter-spacing:-1px">100.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-51">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(51)"><i class="ti ti-trash"></i> Remove</button>
@@ -5936,7 +5987,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-52-eBay">CA$100.00</span>
+        <span class="market-price " id="mp-52-eBay">$<span style="letter-spacing:-1px">100.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-52-eBay" value="100" oninput="savePrice(52,'eBay',this.value)" onblur="hideInput('52','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-52-eBay" onclick="toggleInput('52','eBay')">
           <i class="ti ti-pencil"></i>
@@ -6013,7 +6064,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-52">CA$100.00</div>
+        <div class="best-price" id="bp-52">$<span style="letter-spacing:-1px">100.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-52">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(52)"><i class="ti ti-trash"></i> Remove</button>
@@ -6041,7 +6092,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-53-eBay">CA$150.00</span>
+        <span class="market-price " id="mp-53-eBay">$<span style="letter-spacing:-1px">150.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-53-eBay" value="150" oninput="savePrice(53,'eBay',this.value)" onblur="hideInput('53','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-53-eBay" onclick="toggleInput('53','eBay')">
           <i class="ti ti-pencil"></i>
@@ -6118,7 +6169,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-53">CA$150.00</div>
+        <div class="best-price" id="bp-53">$<span style="letter-spacing:-1px">150.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-53">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(53)"><i class="ti ti-trash"></i> Remove</button>
@@ -6146,7 +6197,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-54-eBay">CA$200.00</span>
+        <span class="market-price " id="mp-54-eBay">$<span style="letter-spacing:-1px">200.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-54-eBay" value="200" oninput="savePrice(54,'eBay',this.value)" onblur="hideInput('54','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-54-eBay" onclick="toggleInput('54','eBay')">
           <i class="ti ti-pencil"></i>
@@ -6223,7 +6274,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-54">CA$200.00</div>
+        <div class="best-price" id="bp-54">$<span style="letter-spacing:-1px">200.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-54">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(54)"><i class="ti ti-trash"></i> Remove</button>
@@ -6251,7 +6302,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-55-eBay">CA$300.00</span>
+        <span class="market-price " id="mp-55-eBay">$<span style="letter-spacing:-1px">300.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-55-eBay" value="300" oninput="savePrice(55,'eBay',this.value)" onblur="hideInput('55','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-55-eBay" onclick="toggleInput('55','eBay')">
           <i class="ti ti-pencil"></i>
@@ -6328,7 +6379,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-55">CA$300.00</div>
+        <div class="best-price" id="bp-55">$<span style="letter-spacing:-1px">300.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-55">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(55)"><i class="ti ti-trash"></i> Remove</button>
@@ -6356,7 +6407,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-56-eBay">CA$150.00</span>
+        <span class="market-price " id="mp-56-eBay">$<span style="letter-spacing:-1px">150.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-56-eBay" value="150" oninput="savePrice(56,'eBay',this.value)" onblur="hideInput('56','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-56-eBay" onclick="toggleInput('56','eBay')">
           <i class="ti ti-pencil"></i>
@@ -6433,7 +6484,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-56">CA$150.00</div>
+        <div class="best-price" id="bp-56">$<span style="letter-spacing:-1px">150.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-56">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(56)"><i class="ti ti-trash"></i> Remove</button>
@@ -6461,7 +6512,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-57-eBay">CA$300.00</span>
+        <span class="market-price " id="mp-57-eBay">$<span style="letter-spacing:-1px">300.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-57-eBay" value="300" oninput="savePrice(57,'eBay',this.value)" onblur="hideInput('57','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-57-eBay" onclick="toggleInput('57','eBay')">
           <i class="ti ti-pencil"></i>
@@ -6538,7 +6589,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-57">CA$300.00</div>
+        <div class="best-price" id="bp-57">$<span style="letter-spacing:-1px">300.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-57">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(57)"><i class="ti ti-trash"></i> Remove</button>
@@ -6566,7 +6617,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-58-eBay">CA$200.00</span>
+        <span class="market-price " id="mp-58-eBay">$<span style="letter-spacing:-1px">200.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-58-eBay" value="200" oninput="savePrice(58,'eBay',this.value)" onblur="hideInput('58','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-58-eBay" onclick="toggleInput('58','eBay')">
           <i class="ti ti-pencil"></i>
@@ -6643,7 +6694,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-58">CA$200.00</div>
+        <div class="best-price" id="bp-58">$<span style="letter-spacing:-1px">200.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-58">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(58)"><i class="ti ti-trash"></i> Remove</button>
@@ -6671,7 +6722,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <i class="ti ti-external-link"></i><span>eBay ⭐</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price " id="mp-59-eBay">CA$250.00</span>
+        <span class="market-price " id="mp-59-eBay">$<span style="letter-spacing:-1px">250.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0" id="inp-59-eBay" value="250" oninput="savePrice(59,'eBay',this.value)" onblur="hideInput('59','eBay')" onkeydown="if(event.key==='Enter')this.blur()">
         <button class="edit-price-btn" id="pen-59-eBay" onclick="toggleInput('59','eBay')">
           <i class="ti ti-pencil"></i>
@@ -6748,7 +6799,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-59">CA$250.00</div>
+        <div class="best-price" id="bp-59">$<span style="letter-spacing:-1px">250.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></div>
         <div class="best-source" id="bs-59">eBay</div>
       </div>
       <button class="del-btn" onclick="deleteItem(59)"><i class="ti ti-trash"></i> Remove</button>
@@ -6762,6 +6813,8 @@ tr:hover td{background:rgba(255,255,255,0.02);}
   </div></div>
   </div>
 
+  <div class="pagination" id="pagination"></div>
+
   <!-- PORTFOLIO PAGE -->
   <div class="page" id="page-portfolio">
     <div class="port-title">PORTFOLIO VALUE</div>
@@ -6770,7 +6823,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="total-card">
       <div>
         <div class="total-label">Total Collection Value</div>
-        <div class="total-amount" id="p-total">$46,400.00<span class="stat-currency"> CAD</span></div>
+        <div class="total-amount" id="p-total">$*******</div>
         <div class="live-row">
           <div class="live-dot"></div>
           <span class="live-text" id="p-updated">Last updated: 7:15:24 AM</span>
@@ -6799,39 +6852,39 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <td class="tbl-name">PSA 10 2025 POKEMON JAPANESE MC-START DECK 100 BATTLE COLLECTION #764 PIKACHU EX</td>
         <td><span class="tbl-cat pk"><svg width="12" height="12" viewBox="0 0 24 24" style="vertical-align:middle;" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="11" fill="#111"></circle><clipPath id="pt1"><rect x="1" y="1" width="22" height="11"></rect></clipPath><clipPath id="pt2"><rect x="1" y="12" width="22" height="11"></rect></clipPath><circle cx="12" cy="12" r="10.5" fill="#E3001B" clip-path="url(#pt1)"></circle><circle cx="12" cy="12" r="10.5" fill="#fff" clip-path="url(#pt2)"></circle><rect x="1" y="10.5" width="22" height="3" fill="#111"></rect><circle cx="12" cy="12" r="4" fill="#111"></circle><circle cx="12" cy="12" r="2.5" fill="#fff"></circle></svg> PK</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · PSA 10</td>
-        <td class="tbl-price">CA$6,000.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">6,000.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
-        <td style="font-size:12px;color:var(--yellow);">CA$1,700.00</td>
+        <td style="font-size:12px;color:var(--yellow);">$<span style="letter-spacing:-1px">1,700.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td class="tbl-change up">▲ CA$4,300.00</td>
       </tr><tr>
         <td class="tbl-name">PSA 10 2025 POKEMON JAPANESE MC-START DECK 100 BATTLE COLLECTION #764 PIKACHU EX #2</td>
         <td><span class="tbl-cat pk"><svg width="12" height="12" viewBox="0 0 24 24" style="vertical-align:middle;" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="11" fill="#111"></circle><clipPath id="pt1"><rect x="1" y="1" width="22" height="11"></rect></clipPath><clipPath id="pt2"><rect x="1" y="12" width="22" height="11"></rect></clipPath><circle cx="12" cy="12" r="10.5" fill="#E3001B" clip-path="url(#pt1)"></circle><circle cx="12" cy="12" r="10.5" fill="#fff" clip-path="url(#pt2)"></circle><rect x="1" y="10.5" width="22" height="3" fill="#111"></rect><circle cx="12" cy="12" r="4" fill="#111"></circle><circle cx="12" cy="12" r="2.5" fill="#fff"></circle></svg> PK</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · PSA 10</td>
-        <td class="tbl-price">CA$6,000.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">6,000.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
-        <td style="font-size:12px;color:var(--yellow);">CA$1,670.00</td>
+        <td style="font-size:12px;color:var(--yellow);">$<span style="letter-spacing:-1px">1,670.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td class="tbl-change up">▲ CA$4,330.00</td>
       </tr><tr>
         <td class="tbl-name">Dragon Ball Fusion World MANGA BOOSTER 02 Case Carton Sealed SB02</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · Sealed</td>
-        <td class="tbl-price">CA$5,000.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">5,000.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">Mercari Japan</td>
-        <td style="font-size:12px;color:var(--yellow);">CA$1,800.00</td>
+        <td style="font-size:12px;color:var(--yellow);">$<span style="letter-spacing:-1px">1,800.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td class="tbl-change up">▲ CA$3,200.00</td>
       </tr><tr>
         <td class="tbl-name">Pikachu ex 764/742 SAR Pokémon Starter Deck 100 Battle Collection</td>
         <td><span class="tbl-cat pk"><svg width="12" height="12" viewBox="0 0 24 24" style="vertical-align:middle;" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="11" fill="#111"></circle><clipPath id="pt1"><rect x="1" y="1" width="22" height="11"></rect></clipPath><clipPath id="pt2"><rect x="1" y="12" width="22" height="11"></rect></clipPath><circle cx="12" cy="12" r="10.5" fill="#E3001B" clip-path="url(#pt1)"></circle><circle cx="12" cy="12" r="10.5" fill="#fff" clip-path="url(#pt2)"></circle><rect x="1" y="10.5" width="22" height="3" fill="#111"></rect><circle cx="12" cy="12" r="4" fill="#111"></circle><circle cx="12" cy="12" r="2.5" fill="#fff"></circle></svg> PK</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · Raw</td>
-        <td class="tbl-price">CA$3,000.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">3,000.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
-        <td style="font-size:12px;color:var(--yellow);">CA$450.00</td>
+        <td style="font-size:12px;color:var(--yellow);">$<span style="letter-spacing:-1px">450.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td class="tbl-change up">▲ CA$2,550.00</td>
       </tr><tr>
         <td class="tbl-name">PSA 10 DRAGON BALL HEROES UGM1-SEC4 SERIAL NUMBER SON GOKU AKIRA TORIYAMA CP.</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · PSA 10</td>
-        <td class="tbl-price">CA$2,000.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">2,000.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
         <td style="font-size:12px;color:var(--yellow);">—</td>
         <td class="tbl-change na">—</td>
@@ -6839,15 +6892,15 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <td class="tbl-name">PSA 10 DRAGON BALL HEROES UGM1-SEC4 SERIAL NUMBER SON GOKU AKIRA TORIYAMA CP. #2</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · PSA 10</td>
-        <td class="tbl-price">CA$2,000.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">2,000.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
-        <td style="font-size:12px;color:var(--yellow);">CA$840.00</td>
+        <td style="font-size:12px;color:var(--yellow);">$<span style="letter-spacing:-1px">840.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td class="tbl-change up">▲ CA$1,160.00</td>
       </tr><tr>
         <td class="tbl-name">PSA 10 2021 SUPER DRAGON BALL HEROES BIG BANG MISSION 11 #ASEC SON GOKU</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · PSA 10</td>
-        <td class="tbl-price">CA$1,500.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">1,500.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
         <td style="font-size:12px;color:var(--yellow);">—</td>
         <td class="tbl-change na">—</td>
@@ -6855,7 +6908,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <td class="tbl-name">PSA 10 Son Goku Childhood UGM5-ASEC P Super Dragon Ball Heroes 2022</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · PSA 10</td>
-        <td class="tbl-price">CA$1,000.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">1,000.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
         <td style="font-size:12px;color:var(--yellow);">—</td>
         <td class="tbl-change na">—</td>
@@ -6863,23 +6916,23 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <td class="tbl-name">Son Gohan: Childhood SB02-007 Ultimate Battle Winner Promo</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · Raw</td>
-        <td class="tbl-price">CA$1,000.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">1,000.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
-        <td style="font-size:12px;color:var(--yellow);">CA$200.00</td>
+        <td style="font-size:12px;color:var(--yellow);">$<span style="letter-spacing:-1px">200.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td class="tbl-change up">▲ CA$800.00</td>
       </tr><tr>
         <td class="tbl-name">PSA 10 1999 Pokemon Psyduck 1st Edition Fossil #53</td>
         <td><span class="tbl-cat pk"><svg width="12" height="12" viewBox="0 0 24 24" style="vertical-align:middle;" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="11" fill="#111"></circle><clipPath id="pt1"><rect x="1" y="1" width="22" height="11"></rect></clipPath><clipPath id="pt2"><rect x="1" y="12" width="22" height="11"></rect></clipPath><circle cx="12" cy="12" r="10.5" fill="#E3001B" clip-path="url(#pt1)"></circle><circle cx="12" cy="12" r="10.5" fill="#fff" clip-path="url(#pt2)"></circle><rect x="1" y="10.5" width="22" height="3" fill="#111"></rect><circle cx="12" cy="12" r="4" fill="#111"></circle><circle cx="12" cy="12" r="2.5" fill="#fff"></circle></svg> PK</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · PSA 10</td>
-        <td class="tbl-price">CA$1,000.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">1,000.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
-        <td style="font-size:12px;color:var(--yellow);">CA$140.00</td>
+        <td style="font-size:12px;color:var(--yellow);">$<span style="letter-spacing:-1px">140.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td class="tbl-change up">▲ CA$860.00</td>
       </tr><tr>
         <td class="tbl-name">PSA 10 Son Goku Childhood UGM5-ASEC P Super Dragon Ball Heroes 2022 #2</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · PSA 10</td>
-        <td class="tbl-price">CA$1,000.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">1,000.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
         <td style="font-size:12px;color:var(--yellow);">—</td>
         <td class="tbl-change na">—</td>
@@ -6887,15 +6940,15 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <td class="tbl-name">PSA 10 2023 Super Dragon Ball Heroes Son Goku Childhood UGM10-011 Dramatic Art</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · PSA 10</td>
-        <td class="tbl-price">CA$1,000.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">1,000.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
-        <td style="font-size:12px;color:var(--yellow);">CA$250.00</td>
+        <td style="font-size:12px;color:var(--yellow);">$<span style="letter-spacing:-1px">250.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td class="tbl-change up">▲ CA$750.00</td>
       </tr><tr>
         <td class="tbl-name">PSA 9 1999 Pokemon Charmander First Edition Shadowless</td>
         <td><span class="tbl-cat pk"><svg width="12" height="12" viewBox="0 0 24 24" style="vertical-align:middle;" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="11" fill="#111"></circle><clipPath id="pt1"><rect x="1" y="1" width="22" height="11"></rect></clipPath><clipPath id="pt2"><rect x="1" y="12" width="22" height="11"></rect></clipPath><circle cx="12" cy="12" r="10.5" fill="#E3001B" clip-path="url(#pt1)"></circle><circle cx="12" cy="12" r="10.5" fill="#fff" clip-path="url(#pt2)"></circle><rect x="1" y="10.5" width="22" height="3" fill="#111"></rect><circle cx="12" cy="12" r="4" fill="#111"></circle><circle cx="12" cy="12" r="2.5" fill="#fff"></circle></svg> PK</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · PSA 9</td>
-        <td class="tbl-price">CA$800.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">800.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
         <td style="font-size:12px;color:var(--yellow);">—</td>
         <td class="tbl-change na">—</td>
@@ -6903,23 +6956,23 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <td class="tbl-name">PSA 10 1999 Pokemon Butterfree First Edition Jungle #33</td>
         <td><span class="tbl-cat pk"><svg width="12" height="12" viewBox="0 0 24 24" style="vertical-align:middle;" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="11" fill="#111"></circle><clipPath id="pt1"><rect x="1" y="1" width="22" height="11"></rect></clipPath><clipPath id="pt2"><rect x="1" y="12" width="22" height="11"></rect></clipPath><circle cx="12" cy="12" r="10.5" fill="#E3001B" clip-path="url(#pt1)"></circle><circle cx="12" cy="12" r="10.5" fill="#fff" clip-path="url(#pt2)"></circle><rect x="1" y="10.5" width="22" height="3" fill="#111"></rect><circle cx="12" cy="12" r="4" fill="#111"></circle><circle cx="12" cy="12" r="2.5" fill="#fff"></circle></svg> PK</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · PSA 10</td>
-        <td class="tbl-price">CA$700.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">700.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
-        <td style="font-size:12px;color:var(--yellow);">CA$200.00</td>
+        <td style="font-size:12px;color:var(--yellow);">$<span style="letter-spacing:-1px">200.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td class="tbl-change up">▲ CA$500.00</td>
       </tr><tr>
         <td class="tbl-name">PSA 10 2023 Goku Final Spirit Bomb Alternate Art Premium Anniversary EX23-52</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · PSA 10</td>
-        <td class="tbl-price">CA$600.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">600.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
-        <td style="font-size:12px;color:var(--yellow);">CA$500.00</td>
+        <td style="font-size:12px;color:var(--yellow);">$<span style="letter-spacing:-1px">500.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td class="tbl-change up">▲ CA$100.00</td>
       </tr><tr>
         <td class="tbl-name">PSA 10 2021 Dragon Ball Super SS Goku &amp; Frieza Miraculous Conclusion BT14-152 Cross Spirits</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · PSA 10</td>
-        <td class="tbl-price">CA$600.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">600.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
         <td style="font-size:12px;color:var(--yellow);">—</td>
         <td class="tbl-change na">—</td>
@@ -6927,15 +6980,15 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <td class="tbl-name">PSA 10 2000 Pokemon Gym Challenge Misty's Magikarp 1st Edition #88</td>
         <td><span class="tbl-cat pk"><svg width="12" height="12" viewBox="0 0 24 24" style="vertical-align:middle;" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="11" fill="#111"></circle><clipPath id="pt1"><rect x="1" y="1" width="22" height="11"></rect></clipPath><clipPath id="pt2"><rect x="1" y="12" width="22" height="11"></rect></clipPath><circle cx="12" cy="12" r="10.5" fill="#E3001B" clip-path="url(#pt1)"></circle><circle cx="12" cy="12" r="10.5" fill="#fff" clip-path="url(#pt2)"></circle><rect x="1" y="10.5" width="22" height="3" fill="#111"></rect><circle cx="12" cy="12" r="4" fill="#111"></circle><circle cx="12" cy="12" r="2.5" fill="#fff"></circle></svg> PK</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · PSA 10</td>
-        <td class="tbl-price">CA$600.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">600.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
-        <td style="font-size:12px;color:var(--yellow);">CA$160.00</td>
+        <td style="font-size:12px;color:var(--yellow);">$<span style="letter-spacing:-1px">160.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td class="tbl-change up">▲ CA$440.00</td>
       </tr><tr>
         <td class="tbl-name">Dragon Ball Porunga Figure Ichiban Kuji VS Omnibus Z Prize Last One</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Figure · Mint</td>
-        <td class="tbl-price">CA$600.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">600.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
         <td style="font-size:12px;color:var(--yellow);">—</td>
         <td class="tbl-change na">—</td>
@@ -6943,7 +6996,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <td class="tbl-name">Pokémon Charizard Rising Flames Statue First 4 Figures #3180/3500</td>
         <td><span class="tbl-cat pk"><svg width="12" height="12" viewBox="0 0 24 24" style="vertical-align:middle;" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="11" fill="#111"></circle><clipPath id="pt1"><rect x="1" y="1" width="22" height="11"></rect></clipPath><clipPath id="pt2"><rect x="1" y="12" width="22" height="11"></rect></clipPath><circle cx="12" cy="12" r="10.5" fill="#E3001B" clip-path="url(#pt1)"></circle><circle cx="12" cy="12" r="10.5" fill="#fff" clip-path="url(#pt2)"></circle><rect x="1" y="10.5" width="22" height="3" fill="#111"></rect><circle cx="12" cy="12" r="4" fill="#111"></circle><circle cx="12" cy="12" r="2.5" fill="#fff"></circle></svg> PK</span></td>
         <td style="font-size:12px;color:var(--text2);">Figure · Mint</td>
-        <td class="tbl-price">CA$550.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">550.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
         <td style="font-size:12px;color:var(--yellow);">—</td>
         <td class="tbl-change na">—</td>
@@ -6951,7 +7004,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <td class="tbl-name">PSA 10 2021 SUPER DRAGON BALL HEROES BIG BANG MISSION 11 #ASEC SON GOKU #2</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · PSA 10</td>
-        <td class="tbl-price">CA$500.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">500.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
         <td style="font-size:12px;color:var(--yellow);">—</td>
         <td class="tbl-change na">—</td>
@@ -6959,7 +7012,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <td class="tbl-name">PSA 10 2024 SDBH METEOR M2 #014 BULMA DRAMATIC ART MM2-014 DA</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · PSA 10</td>
-        <td class="tbl-price">CA$500.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">500.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
         <td style="font-size:12px;color:var(--yellow);">—</td>
         <td class="tbl-change na">—</td>
@@ -6967,7 +7020,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <td class="tbl-name">PSA 10 2022 Super Dragon Ball Heroes Son Goku UGM4-067 Premium UR</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · PSA 10</td>
-        <td class="tbl-price">CA$500.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">500.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
         <td style="font-size:12px;color:var(--yellow);">—</td>
         <td class="tbl-change na">—</td>
@@ -6975,7 +7028,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <td class="tbl-name">PSA 10 2018 Dragon Ball Super Distant Descendant Son Goku Jr BT4-123 Colossal Warfare SCR</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · PSA 10</td>
-        <td class="tbl-price">CA$500.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">500.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
         <td style="font-size:12px;color:var(--yellow);">—</td>
         <td class="tbl-change na">—</td>
@@ -6983,7 +7036,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <td class="tbl-name">PSA 10 2022 Dragon Ball Son Goku Shounenki UGM5-ASEC 12th Anniversary</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · PSA 10</td>
-        <td class="tbl-price">CA$500.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">500.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
         <td style="font-size:12px;color:var(--yellow);">—</td>
         <td class="tbl-change na">—</td>
@@ -6991,7 +7044,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <td class="tbl-name">Ozaru Vegeta Ichiban Kuji Last One Bandai</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Figure · Mint</td>
-        <td class="tbl-price">CA$500.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">500.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
         <td style="font-size:12px;color:var(--yellow);">—</td>
         <td class="tbl-change na">—</td>
@@ -6999,7 +7052,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <td class="tbl-name">Ozaru Vegeta Ichiban Kuji Last One Bandai #2</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Figure · Mint</td>
-        <td class="tbl-price">CA$500.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">500.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
         <td style="font-size:12px;color:var(--yellow);">—</td>
         <td class="tbl-change na">—</td>
@@ -7007,7 +7060,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <td class="tbl-name">PSA 10 2021 Super Dragon Ball Heroes Son Goku BM11-SEC3 Secret</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · PSA 10</td>
-        <td class="tbl-price">CA$400.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">400.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
         <td style="font-size:12px;color:var(--yellow);">—</td>
         <td class="tbl-change na">—</td>
@@ -7015,7 +7068,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <td class="tbl-name">PSA 10 2018 Dragon Ball Super Miraculous Fighter SS3 Gogeta BT5-120 Miraculous Revival SCR</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · PSA 10</td>
-        <td class="tbl-price">CA$400.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">400.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
         <td style="font-size:12px;color:var(--yellow);">—</td>
         <td class="tbl-change na">—</td>
@@ -7023,7 +7076,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <td class="tbl-name">PSA 10 2022 Dragon Ball Super Oath Of Z BT17-149 Ultimate Squad SCR</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · PSA 10</td>
-        <td class="tbl-price">CA$400.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">400.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
         <td style="font-size:12px;color:var(--yellow);">—</td>
         <td class="tbl-change na">—</td>
@@ -7031,23 +7084,23 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <td class="tbl-name">PSA 10 2023 Super Dragon Ball Heroes Vegeta UGM7-004 Dramatic Art</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · PSA 10</td>
-        <td class="tbl-price">CA$400.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">400.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
-        <td style="font-size:12px;color:var(--yellow);">CA$90.00</td>
+        <td style="font-size:12px;color:var(--yellow);">$<span style="letter-spacing:-1px">90.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td class="tbl-change up">▲ CA$310.00</td>
       </tr><tr>
         <td class="tbl-name">PSA 10 2024 SDBH Promo ABS-33 Son Goku SP Set Thanks All Heroes</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · PSA 10</td>
-        <td class="tbl-price">CA$350.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">350.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
-        <td style="font-size:12px;color:var(--yellow);">CA$220.00</td>
+        <td style="font-size:12px;color:var(--yellow);">$<span style="letter-spacing:-1px">220.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td class="tbl-change up">▲ CA$130.00</td>
       </tr><tr>
         <td class="tbl-name">PSA 10 2024 Super Dragon Ball Heroes Son Goku MM3-071 Premium UR Get Chance CP</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · PSA 10</td>
-        <td class="tbl-price">CA$300.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">300.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
         <td style="font-size:12px;color:var(--yellow);">—</td>
         <td class="tbl-change na">—</td>
@@ -7055,7 +7108,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <td class="tbl-name">S.H. Figuarts Dragon Ball Z Shenron Exclusive Edition SDCC 2022</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Figure · Sealed</td>
-        <td class="tbl-price">CA$300.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">300.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
         <td style="font-size:12px;color:var(--yellow);">—</td>
         <td class="tbl-change na">—</td>
@@ -7063,15 +7116,15 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <td class="tbl-name">PSA 10 2024 Super Dragon Ball Heroes Son Goku MM3-014 Dramatic Art</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · PSA 10</td>
-        <td class="tbl-price">CA$300.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">300.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
-        <td style="font-size:12px;color:var(--yellow);">CA$220.00</td>
+        <td style="font-size:12px;color:var(--yellow);">$<span style="letter-spacing:-1px">220.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td class="tbl-change up">▲ CA$80.00</td>
       </tr><tr>
         <td class="tbl-name">PSA 10 2022 SDBH Promo Son Goku PUMS12-SEC Extra Booster Pack 2</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · PSA 10</td>
-        <td class="tbl-price">CA$300.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">300.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
         <td style="font-size:12px;color:var(--yellow);">—</td>
         <td class="tbl-change na">—</td>
@@ -7079,7 +7132,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <td class="tbl-name">PSA 10 2022 Super Dragon Ball Heroes Son Goku UGM5-017</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · PSA 10</td>
-        <td class="tbl-price">CA$300.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">300.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
         <td style="font-size:12px;color:var(--yellow);">—</td>
         <td class="tbl-change na">—</td>
@@ -7087,7 +7140,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <td class="tbl-name">S.H. Figuarts Nappa Dragon Ball Z Event Exclusive Color Edition SDCC 2021</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Figure · Sealed</td>
-        <td class="tbl-price">CA$250.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">250.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
         <td style="font-size:12px;color:var(--yellow);">—</td>
         <td class="tbl-change na">—</td>
@@ -7095,15 +7148,15 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <td class="tbl-name">PSA 10 2024 SDBH Promo #012 Son Goku Shounenki Dramatic Art Card Pack</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · PSA 10</td>
-        <td class="tbl-price">CA$250.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">250.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
-        <td style="font-size:12px;color:var(--yellow);">CA$80.00</td>
+        <td style="font-size:12px;color:var(--yellow);">$<span style="letter-spacing:-1px">80.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td class="tbl-change up">▲ CA$170.00</td>
       </tr><tr>
         <td class="tbl-name">PSA 10 2018 Super Dragon Ball Heroes Son Goku UM2-SEC Secret</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · PSA 10</td>
-        <td class="tbl-price">CA$250.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">250.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
         <td style="font-size:12px;color:var(--yellow);">—</td>
         <td class="tbl-change na">—</td>
@@ -7111,15 +7164,15 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <td class="tbl-name">PSA 10 2022 Super Dragon Ball Heroes Son Goku UGM5-011 DA 12th Anniversary</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · PSA 10</td>
-        <td class="tbl-price">CA$250.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">250.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
-        <td style="font-size:12px;color:var(--yellow);">CA$70.00</td>
+        <td style="font-size:12px;color:var(--yellow);">$<span style="letter-spacing:-1px">70.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td class="tbl-change up">▲ CA$180.00</td>
       </tr><tr>
         <td class="tbl-name">PSA 10 2021 Super Dragon Ball Heroes Promo Son Goku BM3-SEC2</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · PSA 10</td>
-        <td class="tbl-price">CA$250.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">250.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
         <td style="font-size:12px;color:var(--yellow);">—</td>
         <td class="tbl-change na">—</td>
@@ -7127,7 +7180,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <td class="tbl-name">Bandai Figuarts Zero Dragon Ball Son Goku &amp; Bulma</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Figure · Sealed</td>
-        <td class="tbl-price">CA$200.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">200.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
         <td style="font-size:12px;color:var(--yellow);">—</td>
         <td class="tbl-change na">—</td>
@@ -7135,7 +7188,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <td class="tbl-name">S.H. Figuarts 2023 SDCC Exclusive Dragon Ball Z Super Saiyan 2 Son Gohan &amp; Goku</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Figure · Sealed</td>
-        <td class="tbl-price">CA$200.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">200.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
         <td style="font-size:12px;color:var(--yellow);">—</td>
         <td class="tbl-change na">—</td>
@@ -7143,7 +7196,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <td class="tbl-name">S.H. Figuarts 2023 SDCC Exclusive Dragon Ball Z Super Saiyan 2 Son Gohan &amp; Goku #2</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Figure · Sealed</td>
-        <td class="tbl-price">CA$200.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">200.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
         <td style="font-size:12px;color:var(--yellow);">—</td>
         <td class="tbl-change na">—</td>
@@ -7151,23 +7204,23 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <td class="tbl-name">PSA 10 2023 SDBH Meteor M1 Son Goku Shounenki MM1-010 Dramatic Art</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · PSA 10</td>
-        <td class="tbl-price">CA$200.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">200.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
-        <td style="font-size:12px;color:var(--yellow);">CA$80.00</td>
+        <td style="font-size:12px;color:var(--yellow);">$<span style="letter-spacing:-1px">80.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td class="tbl-change up">▲ CA$120.00</td>
       </tr><tr>
         <td class="tbl-name">PSA 10 2023 Super Dragon Ball Heroes Son Goku Shounenki UGM6-011 Dramatic Art</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · PSA 10</td>
-        <td class="tbl-price">CA$200.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">200.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
-        <td style="font-size:12px;color:var(--yellow);">CA$70.00</td>
+        <td style="font-size:12px;color:var(--yellow);">$<span style="letter-spacing:-1px">70.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td class="tbl-change up">▲ CA$130.00</td>
       </tr><tr>
         <td class="tbl-name">PSA 10 2022 Super Dragon Ball Heroes Shenron UGM3-SEC3 Secret</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · PSA 10</td>
-        <td class="tbl-price">CA$200.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">200.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
         <td style="font-size:12px;color:var(--yellow);">—</td>
         <td class="tbl-change na">—</td>
@@ -7175,7 +7228,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <td class="tbl-name">PSA 10 2018 Dragon Ball Super Shenron the Wishgranter BT5-110 SPR Miraculous Revival</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · PSA 10</td>
-        <td class="tbl-price">CA$200.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">200.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
         <td style="font-size:12px;color:var(--yellow);">—</td>
         <td class="tbl-change na">—</td>
@@ -7183,15 +7236,15 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <td class="tbl-name">PSA 10 2023 DBS Card Game Son Goku Final Spirit Bomb EX23-52 SCR Premium Anniversary Box</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · PSA 10</td>
-        <td class="tbl-price">CA$200.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">200.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
-        <td style="font-size:12px;color:var(--yellow);">CA$50.00</td>
+        <td style="font-size:12px;color:var(--yellow);">$<span style="letter-spacing:-1px">50.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td class="tbl-change up">▲ CA$150.00</td>
       </tr><tr>
         <td class="tbl-name">PSA 10 2024 SDBH Meteor M4 Vegito MM4-SEC5 Super Fusion Warrior Sec Get CP</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · PSA 10</td>
-        <td class="tbl-price">CA$200.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">200.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
         <td style="font-size:12px;color:var(--yellow);">—</td>
         <td class="tbl-change na">—</td>
@@ -7199,47 +7252,47 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <td class="tbl-name">PSA 10 2023 Super Dragon Ball Heroes Son Goku Shounenki UGM10-SEC3 Dramatic Art</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · PSA 10</td>
-        <td class="tbl-price">CA$150.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">150.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
-        <td style="font-size:12px;color:var(--yellow);">CA$100.00</td>
+        <td style="font-size:12px;color:var(--yellow);">$<span style="letter-spacing:-1px">100.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td class="tbl-change up">▲ CA$50.00</td>
       </tr><tr>
         <td class="tbl-name">PSA 10 2024 SDBH Promo Shenron UGM3-SEC3 Dramatic Art Card Pack</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · PSA 10</td>
-        <td class="tbl-price">CA$150.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">150.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
-        <td style="font-size:12px;color:var(--yellow);">CA$60.00</td>
+        <td style="font-size:12px;color:var(--yellow);">$<span style="letter-spacing:-1px">60.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td class="tbl-change up">▲ CA$90.00</td>
       </tr><tr>
         <td class="tbl-name">PSA 10 2023 Super Dragon Ball Heroes Son Gohan Shounenki UGM7-002 Dramatic Art</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · PSA 10</td>
-        <td class="tbl-price">CA$150.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">150.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
-        <td style="font-size:12px;color:var(--yellow);">CA$60.00</td>
+        <td style="font-size:12px;color:var(--yellow);">$<span style="letter-spacing:-1px">60.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td class="tbl-change up">▲ CA$90.00</td>
       </tr><tr>
         <td class="tbl-name">PSA 10 2023 SDBH Meteor M1 Android 17 &amp; Android 18 MM1-031 Dramatic Art</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · PSA 10</td>
-        <td class="tbl-price">CA$150.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">150.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
-        <td style="font-size:12px;color:var(--yellow);">CA$80.00</td>
+        <td style="font-size:12px;color:var(--yellow);">$<span style="letter-spacing:-1px">80.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td class="tbl-change up">▲ CA$70.00</td>
       </tr><tr>
         <td class="tbl-name">PSA 10 2023 SDBH Meteor M1 Son Gohan Younenki MM1-017 Dramatic Art</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · PSA 10</td>
-        <td class="tbl-price">CA$150.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">150.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
-        <td style="font-size:12px;color:var(--yellow);">CA$60.00</td>
+        <td style="font-size:12px;color:var(--yellow);">$<span style="letter-spacing:-1px">60.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td class="tbl-change up">▲ CA$90.00</td>
       </tr><tr>
         <td class="tbl-name">PSA 10 2019 Dragon Ball Super Super Shenron Ultimate Wishmaster BT6-115 SPR Destroyer Kings</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · PSA 10</td>
-        <td class="tbl-price">CA$150.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">150.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
         <td style="font-size:12px;color:var(--yellow);">—</td>
         <td class="tbl-change na">—</td>
@@ -7247,7 +7300,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <td class="tbl-name">PSA 10 2023 SDBH Promo Gogeta GT SS4 PUMS13-09 Extra Booster Pack 3</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · PSA 10</td>
-        <td class="tbl-price">CA$150.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">150.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
         <td style="font-size:12px;color:var(--yellow);">—</td>
         <td class="tbl-change na">—</td>
@@ -7255,23 +7308,23 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <td class="tbl-name">PSA 10 2022 Super Dragon Ball Heroes Krillin Shounenki UGM5-012 12th Anniv. DA</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · PSA 10</td>
-        <td class="tbl-price">CA$100.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">100.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
-        <td style="font-size:12px;color:var(--yellow);">CA$40.00</td>
+        <td style="font-size:12px;color:var(--yellow);">$<span style="letter-spacing:-1px">40.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td class="tbl-change up">▲ CA$60.00</td>
       </tr><tr>
         <td class="tbl-name">PSA 10 2024 SDBH Promo Vegeta BM9-036 Dramatic Art Card Pack</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · PSA 10</td>
-        <td class="tbl-price">CA$100.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">100.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
-        <td style="font-size:12px;color:var(--yellow);">CA$70.00</td>
+        <td style="font-size:12px;color:var(--yellow);">$<span style="letter-spacing:-1px">70.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td class="tbl-change up">▲ CA$30.00</td>
       </tr><tr>
         <td class="tbl-name">PSA 10 2018 Dragon Ball Super Card Game Shenron the Wishgranter BT5-110 SR Miraculous Revival</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · PSA 10</td>
-        <td class="tbl-price">CA$100.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">100.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
         <td style="font-size:12px;color:var(--yellow);">—</td>
         <td class="tbl-change na">—</td>
@@ -7279,7 +7332,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
         <td class="tbl-name">PSA 10 2019 Dragon Ball Super Super Shenron Ultimate Wishmaster BT6-115 SR Destroyer Kings</td>
         <td><span class="tbl-cat db">🔥 DB</span></td>
         <td style="font-size:12px;color:var(--text2);">Card · PSA 10</td>
-        <td class="tbl-price">CA$100.00</td>
+        <td class="tbl-price">$<span style="letter-spacing:-1px">100.00</span><span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;"> CAD</span></td>
         <td style="font-size:12px;color:var(--text2);">eBay</td>
         <td style="font-size:12px;color:var(--yellow);">—</td>
         <td class="tbl-change na">—</td>
@@ -7368,6 +7421,8 @@ let activeFilter = 'all';
 let activeSearch = '';
 let activeBriefcase = 0; // 0 = all cards, 1 = briefcase 1, 2 = briefcase 2
 let activeSort = 'default';
+let pageSize = 22;
+let currentPage = 1;
 
 // Master item list — new items here are auto-added to any existing saved collection
 const ITEM_ORDER = ['pikachu-ex-2025-psa10','pikachu-ex-2025-psa10-2','pikachu-sar-764-raw','goku-childhood-ugm5-psa10','goku-childhood-ugm5-psa10-2','goku-ugm5-asec-12th-psa10','goku-bigbang-asec-2021-psa10','goku-bigbang-asec-2021-parallel-psa10-2','goku-bigbang-asec-2021-psa10-2','goku-ugm1-sec4-psa10','goku-ugm1-sec4-psa10-2','mew-holo-cp5-1ed-psa10','celebi-fa-cp5-2016-psa10','bulma-mm2-014-da-psa10','gohan-childhood-sb02-007','dbfw-manga-booster-02-case','charmander-1ed-shadowless-psa9','butterfree-1ed-jungle-psa10','psyduck-1ed-fossil-psa10','goku-spirit-bomb-ex23-psa10','goku-frieza-bt14-152-psa10','goku-ugm4-067-psa10','goku-jr-bt4-123-psa10','goku-bm11-sec3-psa10','gogeta-bt5-120-psa10','magikarp-misty-1ed-psa10','oath-of-z-bt17-149-psa10','goku-mm3-071-psa10','goku-mm3-014-da-psa10','goku-ugm10-011-da-psa10','goku-promo-012-da-psa10','goku-ugm10-sec3-da-psa10','goku-abs33-promo-psa10','goku-um2-sec-psa10','goku-ugm5-011-da-psa10','shenron-ugm3-sec3-da-psa10','vegeta-ugm7-004-da-psa10','goku-mm1-010-da-psa10','goku-ugm6-011-da-psa10','gohan-ugm7-002-da-psa10','krillin-ugm5-012-da-psa10','android-17-18-mm1-031-da-psa10','gohan-mm1-017-da-psa10','vegeta-bm9-036-da-psa10','shenron-ugm3-sec3-secret-psa10','shenron-bt5-110-spr-psa10','shenron-bt5-110-sr-psa10','super-shenron-bt6-115-sr-psa10','super-shenron-bt6-115-spr-psa10','goku-fsb-ex23-anniv-psa10','goku-pums12-sec-psa10','gogeta-gt-pums13-09-psa10','goku-ugm5-017-psa10','vegito-mm4-sec5-psa10','goku-bm3-sec2-psa10','goku-kakarot-p187-pr-psa10','gohan-goku-mm1-asec-psa10','gohan-bm12-017-psa10','gogeta-gt-pums11-sec-psa10','vegito-mm4-sec-psa10','gohan-ugm1-sec3-psa10','goku-uub-tb2-069-scr-psa10','goku-bm5-sec3-psa10','goku-gt-ugm9-sec4-psa10','goku-gt-um9-sec-psa10','goku-gt-ugm6-sec2-psa10','goku-vegeta-gt-pums14-sec-psa10','goku-ugm2-sec2-psa10','goku-vegeta-ugm1-sec2-psa10','goku-um5-sec3-psa10','goku-shounenki-ugm10-sec3-psa10','gotenks-mm1-071-psa10','goku-mm1-067-psa10','vegito-mm1-072-psa10','gogeta-mm1-073-psa10','broly-mm1-074-psa10','gohan-shounenki-mm1-070-psa10','vegeta-mm1-068-psa10','trunks-seinenki-mm1-069-psa10','vegito-ugm9-072-psa10','goku-ugm9-071-psa10','goku-ugm9-052-psa10','gohan-shounenki-ugm9-069-psa10','gotenks-ugm9-070-psa10','vegeta-ugm9-068-psa10','vegeta-abs02-psa10','vegeta-um10-sec3-psa10','vegeta-bt11-066-spr-psa10','abra-1ed-base-psa9','psyduck-sv2a-054-masterball-psa10','golduck-sv2a-055-masterball-psa10','dbscg-fw-1st-anniv-set','sdv7-pur-set-5cards-psa10','ozaru-vegeta-ichiban-kuji','ozaru-vegeta-ichiban-kuji-2','porunga-ichiban-kuji-last-one','shenron-shf-sdcc-2022','goku-bulma-figuarts-zero','nappa-shf-sdcc-2021','ss2-gohan-goku-shf-sdcc-2023','ss2-gohan-goku-shf-sdcc-2023-2','charizard-first4-statue','gohan-snap-shenron-ichiban-kuji','gohan-snap-shenron-ichiban-kuji-2','goku-duel-future-ichiban-kuji','goku-duel-future-ichiban-kuji-2','goku-duel-future-ichiban-kuji-3','great-ape-vegeta-shf','great-ape-goku-ichiban-sofvics','great-ape-goku-ichiban-sofvics-2','bulma-ichiban-chronicle-masterlise','bulma-ichiban-chronicle-masterlise-2','goku-ss-ichiban-chronicle-masterlise','goku-ss-ichiban-chronicle-masterlise-2','goku-kid-ichiban-chronicle','goku-kid-ichiban-chronicle-2','goku-ss2-ichiban-chronicle-masterlise','goku-gohan-kintoun-shf-sdcc','goku-ultra-instinct-toyotaru-shf','goku-ultra-instinct-shf','gogeta-blue-shf','goku-gt-kid-shf','goku-ss4-gt-shf','vegeta-ss4-gt-shf','piccolo-proud-namekian-shf','tao-pai-pai-shf','goku-hara-hachibunme-shf','pan-gt-gill-shf','trunks-gt-shf','super-android-17-gt-shf','android-19-shf','android-20-shf','raditz-gohan-shf-exclusive','majin-vegeta-shf-exclusive','nappa-shf-exclusive','jiren-shf-exclusive','trunks-future-shf-exclusive','frieza-final-form-shf','frieza-resurrection-shf','frieza-full-power-shf','frieza-third-form-shf','frieza-second-form-shf'];
@@ -7581,30 +7636,41 @@ function fmt(n){
   var v=n*_currRate, d=_currDec;
   return _currCode+'$'+Number(v).toLocaleString('en-CA',{minimumFractionDigits:d,maximumFractionDigits:d});
 }
-function fmtHTML(n){
+function fmtPrice(n){
   if(!n && n!==0) return '—';
   var v=n*_currRate, d=_currDec;
-  return '$'+Number(v).toLocaleString('en-CA',{minimumFractionDigits:d,maximumFractionDigits:d})+'<span class="stat-currency"> '+_currCode+'</span>';
+  return '$'+Number(v).toLocaleString('en-CA',{minimumFractionDigits:d,maximumFractionDigits:d});
+}
+function fmtBestPrice(n){
+  if(!n && n!==0) return '—';
+  var v=n*_currRate, d=_currDec;
+  return '$'+Number(v).toLocaleString('en-CA',{minimumFractionDigits:d,maximumFractionDigits:d})+'<span style="font-size:0.45em;opacity:0.4;margin-left:2px;font-weight:400;vertical-align:baseline;letter-spacing:0;"> '+_currCode+'</span>';
 }
 function fmtHTML(n){
   if(!n && n!==0) return '—';
   var v=n*_currRate, d=_currDec;
-  return '$'+Number(v).toLocaleString('en-CA',{minimumFractionDigits:d,maximumFractionDigits:d})+'<span class="stat-currency"> '+_currCode+'</span>';
+  return '$'+Number(v).toLocaleString('en-CA',{minimumFractionDigits:d,maximumFractionDigits:d})+' <span style="font-size:0.585em;letter-spacing:-0.5px;font-weight:400;vertical-align:baseline;margin-left:1px;">'+(_currCode||'CAD')+'</span>';
 }
+
 
 function filtered(){
   return items.filter(i => {
+    // Apply tab filter first
+    let matchesFilter = false;
+    if(activeFilter==='all') matchesFilter = true;
+    else if(activeFilter==='db'||activeFilter==='pk') matchesFilter = i.series===activeFilter;
+    else if(activeFilter==='card'){
+      if(activeBriefcase===0) matchesFilter = i.type==='card';
+      if(activeBriefcase===1) matchesFilter = i.type==='card' && i.briefcase===1;
+      if(activeBriefcase===2) matchesFilter = i.type==='card' && i.briefcase===2;
+    }
+    else matchesFilter = i.type===activeFilter;
+
+    // Then apply search within current tab
     if(activeSearch){
-      return i.name.toLowerCase().includes(activeSearch.toLowerCase());
+      return matchesFilter && i.name.toLowerCase().includes(activeSearch.toLowerCase());
     }
-    if(activeFilter==='all') return true;
-    if(activeFilter==='db'||activeFilter==='pk') return i.series===activeFilter;
-    if(activeFilter==='card'){
-      if(activeBriefcase===0) return i.type==='card'; // all cards
-      if(activeBriefcase===1) return i.type==='card' && i.briefcase===1;
-      if(activeBriefcase===2) return i.type==='card' && i.briefcase===2;
-    }
-    return i.type===activeFilter;
+    return matchesFilter;
   });
 }
 
@@ -7643,7 +7709,7 @@ function cardHTML(item, idx, arr){
         <i class="ti ti-external-link"></i><span>${src}${isBest?' ⭐':''}</span>
       </a>
       <div class="market-price-wrap">
-        <span class="market-price ${price?'':'empty'} ${price && item.boughtAt > 0 && item.boughtAt > price ? 'underwater' : ''}" id="mp-${item.id}-${key}">${price?fmt(price):'—'}</span>
+        <span class="market-price ${!price ? 'empty' : (item.boughtAt > 0 && item.boughtAt > price ? 'underwater' : 'green')}" id="mp-${item.id}-${key}">${price?fmtPrice(price):'—'}</span>
         <input class="price-input-mini hidden" type="number" placeholder="CA$" step="0.01" min="0"
           id="inp-${item.id}-${key}" value="${price||''}"
           oninput="savePrice(${item.id},'${src}',this.value)"
@@ -7673,7 +7739,7 @@ function cardHTML(item, idx, arr){
     <div class="card-footer">
       <div>
         <div class="best-label">Best last sold</div>
-        <div class="best-price" id="bp-${item.id}">${item.lastPrice?fmt(item.lastPrice):'Enter a price →'}</div>
+        <div class="best-price" id="bp-${item.id}">${item.lastPrice?fmtBestPrice(item.lastPrice):'Enter a price →'}</div>
         <div class="best-source" id="bs-${item.id}">${item.bestSource||'Click any marketplace link above'}</div>
       </div>
       <button class="del-btn" onclick="deleteItem(${item.id})"><i class="ti ti-trash"></i> Remove</button>
@@ -7704,18 +7770,28 @@ function toggleSearch(){
   const wrap = document.getElementById('search-wrap');
   const btn  = document.getElementById('search-toggle-btn');
   const isOpen = wrap.classList.contains('open');
-  if(isOpen){
+  if(isOpen && !activeSearch){
     wrap.classList.remove('open');
     btn.classList.remove('active');
-    clearSearch();
-  } else {
+  } else if(!isOpen){
     wrap.classList.add('open');
     btn.classList.add('active');
     document.getElementById('search-input').focus();
   }
 }
 
-function onSearch(){
+function commitSearch(){
+  activeSearch = document.getElementById('search-input').value.trim();
+  if(activeSearch){
+    document.getElementById('search-wrap').classList.remove('open');
+    document.getElementById('search-toggle-btn').classList.remove('active');
+    document.getElementById('search-pill').style.display = 'block';
+    document.getElementById('search-pill-text').textContent = '"' + activeSearch + '"';
+  }
+  render();
+}
+
+function onSearch(){ currentPage=1;
   activeSearch = document.getElementById('search-input').value.trim();
   render();
 }
@@ -7726,8 +7802,10 @@ function clearSearch(){
   if(inp) inp.value = '';
   const wrap = document.getElementById('search-wrap');
   const btn  = document.getElementById('search-toggle-btn');
+  const pill = document.getElementById('search-pill');
   if(wrap) wrap.classList.remove('open');
   if(btn)  btn.classList.remove('active');
+  if(pill) pill.style.display = 'none';
   render();
 }
 
@@ -7748,8 +7826,15 @@ function render(){
       return (oa===-1?999:oa) - (ob===-1?999:ob);
     });
   }
-  grid.innerHTML = fi.length
-    ? fi.map((item,i,arr)=>cardHTML(item,i,arr)).join('')
+  // Pagination
+  const total = fi.length;
+  const totalPages = pageSize >= 99999 ? 1 : Math.ceil(total / pageSize);
+  if(currentPage > totalPages) currentPage = 1;
+  const start = (currentPage - 1) * pageSize;
+  const pageItems = pageSize >= 99999 ? fi : fi.slice(start, start + pageSize);
+
+  grid.innerHTML = pageItems.length
+    ? pageItems.map((item,i,arr)=>cardHTML(item,i,arr)).join('')
     : '<div class="empty-state"><i class="ti ti-package"></i><p>No items yet. Click "+ Add Item" to start.</p></div>';
   // Populate carousels after DOM is set
   fi.forEach(item => {
@@ -7762,8 +7847,33 @@ function render(){
     }
     buildCarousel(wrap, item.id, imgs);
   });
+  // Render pagination controls
+  const pag = document.getElementById('pagination');
+  const pagTop = document.getElementById('pagination-top');
+  const totalPages2 = pageSize >= 99999 ? 1 : Math.ceil(filtered().length / pageSize);
+  function buildPagHTML(){
+    if(totalPages2 <= 1) return '';
+    let ph = '';
+    if(currentPage > 1) ph += `<button class="page-btn" onclick="goPage(${currentPage-1})">‹ Prev</button>`;
+    const start2 = Math.max(1, currentPage-2);
+    const end2 = Math.min(totalPages2, currentPage+2);
+    if(start2 > 1) ph += `<button class="page-btn" onclick="goPage(1)">1</button>${start2>2?'<span class="page-info">…</span>':''}`;
+    for(let p=start2;p<=end2;p++) ph += `<button class="page-btn${p===currentPage?' active':''}" onclick="goPage(${p})">${p}</button>`;
+    if(end2 < totalPages2) ph += `${end2<totalPages2-1?'<span class="page-info">…</span>':''}<button class="page-btn" onclick="goPage(${totalPages2})">${totalPages2}</button>`;
+    if(currentPage < totalPages2) ph += `<button class="page-btn" onclick="goPage(${currentPage+1})">Next ›</button>`;
+    ph += `<span class="page-info">${currentPage * pageSize - pageSize + 1}–${Math.min(currentPage * pageSize, filtered().length)} of ${filtered().length}</span>`;
+    return ph;
+  }
+  const pagHTML = buildPagHTML();
+  if(pag) pag.innerHTML = pagHTML;
+  if(pagTop) pagTop.innerHTML = pagHTML;
+
   updateSummary();
   renderPortfolio();
+  // Fade in all stat values after real data is loaded
+  document.querySelectorAll('.stat-val,.stat-val-count,.best-price').forEach(function(el){
+    el.style.opacity='1';
+  });
 }
 
 function saveBought(id, val){
@@ -7774,8 +7884,33 @@ function saveBought(id, val){
   save();
   const inp = document.getElementById('bought-'+id);
   if(inp){ inp.classList.toggle('has-value', item.boughtAt > 0); }
+  // Render pagination controls
+  const pag = document.getElementById('pagination');
+  const pagTop = document.getElementById('pagination-top');
+  const totalPages2 = pageSize >= 99999 ? 1 : Math.ceil(filtered().length / pageSize);
+  function buildPagHTML(){
+    if(totalPages2 <= 1) return '';
+    let ph = '';
+    if(currentPage > 1) ph += `<button class="page-btn" onclick="goPage(${currentPage-1})">‹ Prev</button>`;
+    const start2 = Math.max(1, currentPage-2);
+    const end2 = Math.min(totalPages2, currentPage+2);
+    if(start2 > 1) ph += `<button class="page-btn" onclick="goPage(1)">1</button>${start2>2?'<span class="page-info">…</span>':''}`;
+    for(let p=start2;p<=end2;p++) ph += `<button class="page-btn${p===currentPage?' active':''}" onclick="goPage(${p})">${p}</button>`;
+    if(end2 < totalPages2) ph += `${end2<totalPages2-1?'<span class="page-info">…</span>':''}<button class="page-btn" onclick="goPage(${totalPages2})">${totalPages2}</button>`;
+    if(currentPage < totalPages2) ph += `<button class="page-btn" onclick="goPage(${currentPage+1})">Next ›</button>`;
+    ph += `<span class="page-info">${currentPage * pageSize - pageSize + 1}–${Math.min(currentPage * pageSize, filtered().length)} of ${filtered().length}</span>`;
+    return ph;
+  }
+  const pagHTML = buildPagHTML();
+  if(pag) pag.innerHTML = pagHTML;
+  if(pagTop) pagTop.innerHTML = pagHTML;
+
   updateSummary();
   renderPortfolio();
+  // Fade in all stat values after real data is loaded
+  document.querySelectorAll('.stat-val,.stat-val-count,.best-price').forEach(function(el){
+    el.style.opacity='1';
+  });
 }
 
 function toggleInput(id, key){
@@ -7821,8 +7956,33 @@ function savePrice(id, src, val){
   if(bp) bp.textContent = item.lastPrice?fmt(item.lastPrice):'Enter a price →';
   const bs = document.getElementById(`bs-${id}`);
   if(bs) bs.textContent = item.bestSource||'Click any marketplace link above';
+  // Render pagination controls
+  const pag = document.getElementById('pagination');
+  const pagTop = document.getElementById('pagination-top');
+  const totalPages2 = pageSize >= 99999 ? 1 : Math.ceil(filtered().length / pageSize);
+  function buildPagHTML(){
+    if(totalPages2 <= 1) return '';
+    let ph = '';
+    if(currentPage > 1) ph += `<button class="page-btn" onclick="goPage(${currentPage-1})">‹ Prev</button>`;
+    const start2 = Math.max(1, currentPage-2);
+    const end2 = Math.min(totalPages2, currentPage+2);
+    if(start2 > 1) ph += `<button class="page-btn" onclick="goPage(1)">1</button>${start2>2?'<span class="page-info">…</span>':''}`;
+    for(let p=start2;p<=end2;p++) ph += `<button class="page-btn${p===currentPage?' active':''}" onclick="goPage(${p})">${p}</button>`;
+    if(end2 < totalPages2) ph += `${end2<totalPages2-1?'<span class="page-info">…</span>':''}<button class="page-btn" onclick="goPage(${totalPages2})">${totalPages2}</button>`;
+    if(currentPage < totalPages2) ph += `<button class="page-btn" onclick="goPage(${currentPage+1})">Next ›</button>`;
+    ph += `<span class="page-info">${currentPage * pageSize - pageSize + 1}–${Math.min(currentPage * pageSize, filtered().length)} of ${filtered().length}</span>`;
+    return ph;
+  }
+  const pagHTML = buildPagHTML();
+  if(pag) pag.innerHTML = pagHTML;
+  if(pagTop) pagTop.innerHTML = pagHTML;
+
   updateSummary();
   renderPortfolio();
+  // Fade in all stat values after real data is loaded
+  document.querySelectorAll('.stat-val,.stat-val-count,.best-price').forEach(function(el){
+    el.style.opacity='1';
+  });
 }
 
 function updateSummary(){
@@ -7893,12 +8053,14 @@ function renderPortfolio(){
     }).join('');
 }
 
+function setPageSize(n){ pageSize=n; currentPage=1; render(); }
+function goPage(n){ currentPage=n; render(); window.scrollTo({top:0,behavior:'smooth'}); }
 function setSort(val){
   activeSort = val;
   render();
 }
 
-function setFilter(f,btn){
+function setFilter(f,btn){ currentPage=1;
   activeFilter=f;
   document.querySelectorAll('.filter-chip').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
@@ -7975,13 +8137,54 @@ function buildCarousel(wrap, itemId, imgs){
 
   wrap.innerHTML = '';
 
+  const imgWrap = document.createElement('div');
+  imgWrap.style.cssText = 'position:relative;overflow:hidden;border-radius:8px;width:100%;';
+
   const imgEl = document.createElement('img');
   imgEl.className = 'carousel-img';
   imgEl.src = imgs[idx];
   imgEl.alt = 'Card image';
   imgEl.onclick = () => openLightbox(imgs[idx]);
   imgEl.onerror = () => { imgEl.style.display='none'; };
-  wrap.appendChild(imgEl);
+
+  // Shine wrapper - sized exactly to image using natural dimensions
+  const shineWrap = document.createElement('div');
+  shineWrap.style.cssText = 'position:absolute;pointer-events:none;overflow:hidden;border-radius:8px;display:none;';
+
+  const shine = document.createElement('div');
+  shine.className = 'card-shine';
+  shine.style.animationDelay = (Math.random() * 6).toFixed(1) + 's';
+  shineWrap.appendChild(shine);
+
+  function positionShine() {
+    var natW = imgEl.naturalWidth;
+    var natH = imgEl.naturalHeight;
+    if(!natW || !natH) return;
+    var containerW = imgWrap.offsetWidth || 220;
+    var maxH = 200;
+    var scaleW = containerW / natW;
+    var scaleH = maxH / natH;
+    var scale = Math.min(scaleW, scaleH);
+    var imgW = Math.round(natW * scale);
+    var imgH = Math.round(natH * scale);
+    var offsetX = Math.round((containerW - imgW) / 2);
+    var offsetY = 0;
+    shineWrap.style.display = 'block';
+    shineWrap.style.left = offsetX + 'px';
+    shineWrap.style.top = offsetY + 'px';
+    shineWrap.style.width = imgW + 'px';
+    shineWrap.style.height = imgH + 'px';
+  }
+
+  if(imgEl.complete && imgEl.naturalWidth) {
+    setTimeout(positionShine, 50);
+  } else {
+    imgEl.onload = function(){ setTimeout(positionShine, 50); };
+  }
+
+  imgWrap.appendChild(imgEl);
+  imgWrap.appendChild(shineWrap);
+  wrap.appendChild(imgWrap);
 
   if(imgs.length > 1){
     const prev = document.createElement('button');
@@ -8052,7 +8255,7 @@ function togglePrivacy(){
       var digitCount = Math.max(el.textContent.replace(/[^0-9$]/g,'').length, 4);
       var dots = '<span style="display:inline-flex;align-items:center;gap:4px;vertical-align:middle;height:1em;">';
       for(var i=0;i<digitCount;i++) dots += '<span style="display:inline-block;width:0.55em;height:0.55em;border-radius:50%;background:'+t.color+';opacity:0.85;flex-shrink:0;"></span>';
-      dots += '</span><span class="stat-currency"> CAD</span>';
+      dots += '</span> <span style="font-size:0.585em;letter-spacing:-0.5px;font-weight:400;vertical-align:baseline;margin-left:1px;">CAD</span>';
       el.innerHTML = dots;
     } else {
       if(el.dataset.realHtml) el.innerHTML = el.dataset.realHtml;
